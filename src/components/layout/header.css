@@ -18,3 +18,12 @@
 /* nectar: hsla(22, 66, 55, 1) */
 /* flame: hsla(15, 68, 51, 1) */
 /* burnt umber: hsla(11, 57, 34, 1) */
+
+
+.image-layer {
+    background-image: url("./notebook.jpeg");
+    background-position: center;
+    background-size: cover;
+    height: 60vh
+
+}

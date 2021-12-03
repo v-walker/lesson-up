@@ -5,8 +5,7 @@ function BaseLayout({children}) {
     return (
         <>
             <Header />
-            <br />
-
+            <div className="image-layer position-absolute w-100"></div>
             {children}
         </>
     )
