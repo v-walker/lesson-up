@@ -2,16 +2,16 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Navbar from 'react-bootstrap/Navbar';
 // import Container from 'react-bootstrap/Container';
-import NavDropdown from 'react-bootstrap/NavDropdown';
+// import NavDropdown from 'react-bootstrap/NavDropdown';
 import Nav from 'react-bootstrap/Nav';
 import { FaClipboardList } from 'react-icons/fa';
 import './header.css';
 
-function Header() {
+function Navigation() {
     return (
         <>
         
-        <Navbar bg="light" expand="md">
+        <Navbar sticky="top" bg="light" expand="md">
             {/* <Container className="p-0"> */}
                 <Navbar.Brand href="#home" className="ps-3"><FaClipboardList/>Lesson Up</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -29,4 +29,4 @@ function Header() {
     )
 }
 
-export default Header
+export default Navigation;

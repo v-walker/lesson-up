@@ -1,5 +1,5 @@
 // multiple types
 
-const SAMPLE = "SAMPLE";
+const LOAD_JURISDICTIONS = "LOAD_JURISDICTIONS";
 
-export { SAMPLE }
+export { LOAD_JURISDICTIONS }

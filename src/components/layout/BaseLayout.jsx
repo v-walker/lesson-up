@@ -1,14 +1,20 @@
 import React from 'react';
-import Header from './Header';
+import Navigation from './Navigation';
 
 function BaseLayout({children}) {
     return (
         <>
-            <Header />
-            <div className="image-layer position-absolute w-100"></div>
+            <header>
+                <div className="image-layer">
+                    <h1 className="title">Lesson Up</h1>
+                </div>
+            </header>
+            
+            <Navigation />
+            
             {children}
         </>
     )
 }
 
-export default BaseLayout
+export default BaseLayout;

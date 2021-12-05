@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux';
-import sampleReducer from "./sampleReducer";
+import standardsReducer from './standardsReducer';
 
 // state.sampleCRD.count
 
 const rootReducer = combineReducers({
-    sampleCRD: sampleReducer
+    standardsCRD: standardsReducer
 })
 
 export default rootReducer;

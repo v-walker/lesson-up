@@ -19,11 +19,33 @@
 /* flame: hsla(15, 68, 51, 1) */
 /* burnt umber: hsla(11, 57, 34, 1) */
 
+header {
+    position: relative;
+}
+
+/* nav {
+    position: absolute;
+    top: 20px
+} */
 
 .image-layer {
     background-image: url("./notebook.jpeg");
     background-position: center;
     background-size: cover;
-    height: 60vh
-
+    width: 100vw;
+    height: 60vh;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
+
+.title {
+    color: purple;
+}
+
+/* .text-layer {
+    position: absolute;
+    height: 60vh;
+    z-index: 10;
+} */
