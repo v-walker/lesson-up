@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { getStandardsForSubject } from '../actions/standardsActions';
@@ -10,14 +10,29 @@ import Button from 'react-bootstrap/Button';
 function CreatePlan() {
     const [gradeLevel, setGradeLevel] = useState("");
     const [subject, setSubject] = useState("");
-    const [subjID, setSubjID] = useState("");
-    const [standards, setStandards] = useState([]);
-    const [currentSelectedStandard, setCurrentSelectedStandard] = useState("")
+    const [standards, setStandards] = useState({});
+    const [arrayOfStandards, setArrayOfStandards] = useState([]);
+    const [currentSelectedStandard, setCurrentSelectedStandard] = useState("");
     const dispatch = useDispatch();
-    const georgiaData = useSelector(state => state.standardsCRD.standardSets)
+    const georgiaData = useSelector(state => state.standardsCRD.standardSets);
     let contentAreas = georgiaData.filter(standardSetObj => {
         return standardSetObj.title === gradeLevel
     });
+
+
+    useEffect(() => {
+        // console.log(standards);
+        let tempArray = [];
+        for (let standard in standards) {
+            console.log(standards[standard]);
+            tempArray.push(standards[standard])
+        };
+        setArrayOfStandards(tempArray);
+        console.log(arrayOfStandards);
+    }, [standards])
+
+    
+    console.log("standards", arrayOfStandards);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -29,26 +44,30 @@ function CreatePlan() {
         // console.log(e);
         
         setSubject(e.target.value);
-        setSubjID(id);
- 
-        // getStandardsForSubject(subjID);
 
         let responseData = await axios.get(`https://api.commonstandardsproject.com/api/v1/standard_sets/${id}/?api-key=${process.env.REACT_APP_CSP_API_KEY}`)
         
         console.log(responseData.data.data.standards);
         setStandards(responseData.data.data.standards);
+
+        // let tempArray = [];
+        // for (let standard in standards) {
+        //     tempArray.push(standard)
+        // };
+        // setArrayOfStandards(tempArray);
+
+        // console.log("standards array", arrayOfStandards);
     }
 
     const handleStandardSelection = () => {
         
     }
 
-    console.log(gradeLevel);
+    // console.log(gradeLevel);
 
-    console.log(contentAreas);
-    console.log(subject);
-    console.log("subID", subjID);
-    console.log("standards", standards);
+    // console.log(contentAreas);
+    // console.log(subject);
+    // console.log("standards", standards);
     
     
     return (
@@ -84,7 +103,7 @@ function CreatePlan() {
 
                     <Form.Label>Select Standard(s) {subject && <span>for {subject}</span>}</Form.Label>
                     <Form.Select value={currentSelectedStandard} onChange={(e) => handleStandardSelection(e)}>
-                            
+                        
                         
                     </Form.Select>
                 </>
