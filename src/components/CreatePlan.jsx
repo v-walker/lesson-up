@@ -1,19 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-
-import { getStandardsForSubject } from '../actions/standardsActions';
 import axios from 'axios';
 
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
+import DailyPlan from './DailyPlan';
+
 function CreatePlan() {
+    const daysArray = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
     const [gradeLevel, setGradeLevel] = useState("");
     const [subject, setSubject] = useState("");
     const [standards, setStandards] = useState({});
     const [arrayOfStandards, setArrayOfStandards] = useState([]);
-    const [currentSelectedStandard, setCurrentSelectedStandard] = useState("");
+    const [selectedStandards, setSelectedStandards] = useState([]);
     const dispatch = useDispatch();
+    
     const georgiaData = useSelector(state => state.standardsCRD.standardSets);
     let contentAreas = georgiaData.filter(standardSetObj => {
         return standardSetObj.title === gradeLevel
@@ -24,39 +26,32 @@ function CreatePlan() {
         // console.log(standards);
         let tempArray = [];
         for (let standard in standards) {
-            console.log(standards[standard]);
             tempArray.push(standards[standard])
         };
+        
+        // manipulate temp array so that items are in order by "statementNotation"
+
         setArrayOfStandards(tempArray);
-        console.log(arrayOfStandards);
     }, [standards])
 
     
-    console.log("standards", arrayOfStandards);
+    // console.log("standards", arrayOfStandards);
 
     const handleSubmit = (e) => {
+        // handles submission of completed form
         e.preventDefault();
 
     }
 
     const handleSubjectSelection = async (e) => {
         let id = e.target.children[e.target.selectedIndex].id;
-        // console.log(e);
         
         setSubject(e.target.value);
 
         let responseData = await axios.get(`https://api.commonstandardsproject.com/api/v1/standard_sets/${id}/?api-key=${process.env.REACT_APP_CSP_API_KEY}`)
         
-        console.log(responseData.data.data.standards);
+        // console.log(responseData.data.data.standards);
         setStandards(responseData.data.data.standards);
-
-        // let tempArray = [];
-        // for (let standard in standards) {
-        //     tempArray.push(standard)
-        // };
-        // setArrayOfStandards(tempArray);
-
-        // console.log("standards array", arrayOfStandards);
     }
 
     const handleStandardSelection = () => {
@@ -74,7 +69,8 @@ function CreatePlan() {
         <>
             <Form>
                 <Form.Label onSubmit={handleSubmit}>Select Grade Level</Form.Label>
-                <Form.Select value={gradeLevel} onChange={(e) => setGradeLevel(e.target.value)}>
+                <Form.Select value={gradeLevel} defaultValue="Select a grade level" onChange={(e) => setGradeLevel(e.target.value)}>
+                    <option hidden>Select a grade level</option>
                     <option>Grade K</option>
                     <option>Grade 1</option>
                     <option>Grade 2</option>
@@ -95,19 +91,37 @@ function CreatePlan() {
             {gradeLevel &&
                 <>
                     <Form.Label>Select Content Area</Form.Label>
-                    <Form.Select value={subject} onChange={(e) => handleSubjectSelection(e)}>
+                    <Form.Select value={subject} defaultValue="Select a content area" onChange={(e) => handleSubjectSelection(e)}>
+                        <option hidden>Select a content area</option>
                         {contentAreas.map(contentObj => {
                             return <option key={contentObj.id} id={contentObj.id}>{contentObj.subject}</option>
                         })}
                     </Form.Select>
 
                     <Form.Label>Select Standard(s) {subject && <span>for {subject}</span>}</Form.Label>
-                    <Form.Select value={currentSelectedStandard} onChange={(e) => handleStandardSelection(e)}>
-                        
-                        
-                    </Form.Select>
+                    {/* save this data in local state somehow... */}
+                    <div className="standardsCheckboxes">
+                    {arrayOfStandards.map(standardObj => {
+                            let description = standardObj.description.replace(/<\/?[^>]+>/gi, '')
+
+                            return <div>
+                                    <input type="checkbox" id={standardObj.id} value={standardObj.id} />
+                                    <label for={standardObj.id}><b>{standardObj.statementNotation}:</b> {description}</label>
+                                </div>
+                        })}
+                    </div>
                 </>
-            }
+            } {/* end of grade level and standards section */}
+
+            {daysArray.map(day => {
+               return (
+                   <>
+                    <DailyPlan day={day} />
+                    <br></br>
+                    </>
+               )
+            })}
+            
             
             {/* <Button type="submit">Submit</Button> */}
             </Form>

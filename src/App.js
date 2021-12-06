@@ -15,7 +15,6 @@ function App() {
     dispatch(loadGeorgia());
   }, []);
   
-
   return (
     <>
       some text here

@@ -18,3 +18,10 @@
 /* nectar: hsla(22, 66, 55, 1) */
 /* flame: hsla(15, 68, 51, 1) */
 /* burnt umber: hsla(11, 57, 34, 1) */
+
+.standardsCheckboxes {
+    height: 250px;
+    background-color: yellow;
+    overflow-y: scroll;
+    padding: 20px;
+}
