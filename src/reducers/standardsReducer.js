@@ -1,7 +1,8 @@
-import { LOAD_JURISDICTIONS } from "../actions/types";
+import { LOAD_JURISDICTIONS, GET_STANDARDS } from "../actions/types";
 
 const initialState = {
-    standardSets: []
+    standardSets: [],
+    standards: []
 }
 
 const standardsReducer = (state = initialState, action) => {
@@ -11,6 +12,11 @@ const standardsReducer = (state = initialState, action) => {
             return {
                 ...state,
                 standardSets: action.standardSets
+            }
+        case GET_STANDARDS:
+            return {
+                ...state,
+                standards: [...state.standards, action.standards]
             }
         default: 
             return state;
