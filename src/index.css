@@ -21,7 +21,10 @@
 
 .standardsCheckboxes {
     height: 250px;
-    background-color: yellow;
+    /* background-color: yellow; */
     overflow-y: scroll;
     padding: 20px;
+    margin: 20px;
+    border-radius: 5px;
+    border: 0.5px solid rgba(0, 0, 0, 0.2);
 }

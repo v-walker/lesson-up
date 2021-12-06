@@ -122,8 +122,10 @@ function CreatePlan() {
                )
             })}
             
+            <div className="text-center">
+                <Button type="submit">Submit</Button>
+            </div>
             
-            {/* <Button type="submit">Submit</Button> */}
             </Form>
 
         </>
