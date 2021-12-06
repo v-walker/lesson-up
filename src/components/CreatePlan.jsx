@@ -11,7 +11,8 @@ function CreatePlan() {
     const [gradeLevel, setGradeLevel] = useState("");
     const [subject, setSubject] = useState("");
     const [subjID, setSubjID] = useState("");
-    const [standards, setStandards] = useState([])
+    const [standards, setStandards] = useState([]);
+    const [currentSelectedStandard, setCurrentSelectedStandard] = useState("")
     const dispatch = useDispatch();
     const georgiaData = useSelector(state => state.standardsCRD.standardSets)
     let contentAreas = georgiaData.filter(standardSetObj => {
@@ -33,9 +34,13 @@ function CreatePlan() {
         // getStandardsForSubject(subjID);
 
         let responseData = await axios.get(`https://api.commonstandardsproject.com/api/v1/standard_sets/${id}/?api-key=${process.env.REACT_APP_CSP_API_KEY}`)
-        // let responseData = await axios.get(`https://api.commonstandardsproject.com/api/v1/standard_sets/AB6E6F50DDF047E8BC3EE2CCFD33DCCC_D1000299_grade-05/?api-key=${process.env.REACT_APP_CSP_API_KEY}`)
+        
         console.log(responseData.data.data.standards);
         setStandards(responseData.data.data.standards);
+    }
+
+    const handleStandardSelection = () => {
+        
     }
 
     console.log(gradeLevel);
@@ -43,6 +48,7 @@ function CreatePlan() {
     console.log(contentAreas);
     console.log(subject);
     console.log("subID", subjID);
+    console.log("standards", standards);
     
     
     return (
@@ -50,7 +56,7 @@ function CreatePlan() {
             <Form>
                 <Form.Label onSubmit={handleSubmit}>Select Grade Level</Form.Label>
                 <Form.Select value={gradeLevel} onChange={(e) => setGradeLevel(e.target.value)}>
-                    <option>Pre-k</option>
+                    <option>Grade K</option>
                     <option>Grade 1</option>
                     <option>Grade 2</option>
                     <option>Grade 3</option>
@@ -75,10 +81,16 @@ function CreatePlan() {
                             return <option key={contentObj.id} id={contentObj.id}>{contentObj.subject}</option>
                         })}
                     </Form.Select>
+
+                    <Form.Label>Select Standard(s) {subject && <span>for {subject}</span>}</Form.Label>
+                    <Form.Select value={currentSelectedStandard} onChange={(e) => handleStandardSelection(e)}>
+                            
+                        
+                    </Form.Select>
                 </>
             }
             
-            <Button type="submit">Submit</Button>
+            {/* <Button type="submit">Submit</Button> */}
             </Form>
 
         </>

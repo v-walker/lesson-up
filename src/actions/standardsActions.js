@@ -1,7 +1,15 @@
-import { LOAD_JURISDICTIONS, GET_STANDARDS } from "./types";
+import { LOAD_STATE_DATA, LOAD_STATES_IDENTIFIERS, LOAD_JURISDICTIONS, GET_STANDARDS } from "./types";
 import axios from 'axios';
+import stateIdentifierData from "../data/stateIdentifierData";
 
-// fetch to http://commonstandardsproject.com/api/v1/jurisdictions/
+const loadStateIdentifiers = () => {
+    
+    return {
+        type: LOAD_STATES_IDENTIFIERS,
+        stateIdentifierData
+    }
+}
+
 
 const loadGeorgia = () => async (dispatch, getState) => {
 
@@ -15,22 +23,22 @@ const loadGeorgia = () => async (dispatch, getState) => {
     // }
 
     dispatch({
-        type: LOAD_JURISDICTIONS,
+        type: LOAD_STATE_DATA,
         standardSets: responseData.data.data.standardSets
     })
 }
 
-const getStandardsForSubject = (id) => async (dispatch, getState) => {
+// const getStandardsForSubject = (id) => async (dispatch, getState) => {
 
-    let responseData = await axios.get(`https://api.commonstandardsproject.com/api/v1/standard_sets/${id}/?api-key=${process.env.REACT_APP_CSP_API_KEY}`)
+//     let responseData = await axios.get(`https://api.commonstandardsproject.com/api/v1/standard_sets/${id}/?api-key=${process.env.REACT_APP_CSP_API_KEY}`)
 
-    dispatch({
-        type: GET_STANDARDS,
-        standards: responseData.data.data.standards
-    })
+//     dispatch({
+//         type: GET_STANDARDS,
+//         standards: responseData.data.data.standards
+//     })
     
-}
+// }
 
 
 
-export { loadGeorgia, getStandardsForSubject }
+export { loadStateIdentifiers, loadGeorgia }
