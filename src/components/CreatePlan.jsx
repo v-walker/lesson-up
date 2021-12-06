@@ -67,6 +67,7 @@ function CreatePlan() {
     
     return (
         <>
+            <h2 className="text-center">Let's Make a Plan!</h2>
             <Form>
                 <Form.Label onSubmit={handleSubmit}>Select Grade Level</Form.Label>
                 <Form.Select value={gradeLevel} defaultValue="Select a grade level" onChange={(e) => setGradeLevel(e.target.value)}>
@@ -127,7 +128,6 @@ function CreatePlan() {
             </div>
             
             </Form>
-
         </>
     )
 }
