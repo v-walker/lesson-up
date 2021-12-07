@@ -4,6 +4,8 @@ import axios from 'axios';
 
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import Tab from 'react-bootstrap/Tab';
+import Tabs from 'react-bootstrap/Tabs';
 
 import DailyPlan from './DailyPlan';
 
@@ -16,7 +18,7 @@ function CreatePlan() {
     const [selectedStandard1, setSelectedStandard1] = useState("");
     const [selectedStandard2, setSelectedStandard2] = useState("");
     const [selectedStandard3, setSelectedStandard3] = useState("");
-    const dispatch = useDispatch();
+    // const dispatch = useDispatch();
     
     const georgiaData = useSelector(state => state.standardsCRD.standardSets);
     let contentAreas = georgiaData.filter(standardSetObj => {
@@ -56,9 +58,9 @@ function CreatePlan() {
         setStandards(responseData.data.data.standards);
     }
 
-    const handleSaveDay = () => {
+    // const handleSaveDay = () => {
         
-    }
+    // }
 
     // console.log(gradeLevel);
 
@@ -140,18 +142,29 @@ function CreatePlan() {
                 </>
             }
 
+
             {selectedStandard1 &&
                 <>
-                    <DailyPlan day={daysArray[0]} />
-                    <DailyPlan day={daysArray[1]} />
-                    <DailyPlan day={daysArray[2]} />
-                    <DailyPlan day={daysArray[3]} />
-                    <DailyPlan day={daysArray[4]} />
+                    <Tabs defaultActiveKey="monday" id="day-tabs" className="mb-3">
+                        <Tab eventKey="monday" title="Monday">
+                            <DailyPlan day={daysArray[0]} />
+                        </Tab>
+                        <Tab eventKey="tuesday" title="Tuesday">
+                            <DailyPlan day={daysArray[1]} />
+                        </Tab>
+                        <Tab eventKey="wednesday" title="Wednesday">
+                            <DailyPlan day={daysArray[2]} />
+                        </Tab>
+                        <Tab eventKey="thursday" title="Thursday">
+                            <DailyPlan day={daysArray[3]} />
+                        </Tab>
+                        <Tab eventKey="friday" title="Friday">
+                            <DailyPlan day={daysArray[4]} />
+                        </Tab>
+                    </Tabs>
                 </>
             }
 
-            
-            
             <div className="text-center">
                 <Button type="submit">Submit</Button>
             </div>
