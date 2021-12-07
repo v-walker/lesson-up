@@ -23,7 +23,7 @@ function DailyPlan({day}) {
     const [test, setTest] = useState(false);
     const [independentWork, setIndependentWork] = useState(false);
     const [observation, setObservation] = useState(false);
-    const [assessmentDescription, setAssessmentDescription] = useState(false);
+    const [assessmentDescription, setAssessmentDescription] = useState("");
 
     // accommodations
     const [smallGroup, setSmallGroup] = useState(false);
