@@ -13,7 +13,9 @@ function CreatePlan() {
     const [subject, setSubject] = useState("");
     const [standards, setStandards] = useState({});
     const [arrayOfStandards, setArrayOfStandards] = useState([]);
-    const [selectedStandards, setSelectedStandards] = useState([]);
+    const [selectedStandard1, setSelectedStandard1] = useState("");
+    const [selectedStandard2, setSelectedStandard2] = useState("");
+    const [selectedStandard3, setSelectedStandard3] = useState("");
     const dispatch = useDispatch();
     
     const georgiaData = useSelector(state => state.standardsCRD.standardSets);
@@ -54,7 +56,7 @@ function CreatePlan() {
         setStandards(responseData.data.data.standards);
     }
 
-    const handleStandardSelection = () => {
+    const handleSaveDay = () => {
         
     }
 
@@ -86,8 +88,6 @@ function CreatePlan() {
                     <option>Grade 11</option>
                     <option>Grade 12</option>
                 </Form.Select>
-            {/* </Form> */}
-
             
             {gradeLevel &&
                 <>
@@ -98,30 +98,59 @@ function CreatePlan() {
                             return <option key={contentObj.id} id={contentObj.id}>{contentObj.subject}</option>
                         })}
                     </Form.Select>
-
-                    <Form.Label>Select Standard(s) {subject && <span>for {subject}</span>}</Form.Label>
-                    {/* save this data in local state somehow... */}
-                    <div className="standardsCheckboxes">
-                    {arrayOfStandards.map(standardObj => {
-                            let description = standardObj.description.replace(/<\/?[^>]+>/gi, '')
-
-                            return <div>
-                                    <input type="checkbox" id={standardObj.id} value={standardObj.id} />
-                                    <label for={standardObj.id}><b>{standardObj.statementNotation}:</b> {description}</label>
-                                </div>
-                        })}
-                    </div>
                 </>
             } {/* end of grade level and standards section */}
 
-            {daysArray.map(day => {
-               return (
-                   <>
-                    <DailyPlan day={day} />
-                    <br></br>
-                    </>
-               )
-            })}
+            {subject &&
+                <>
+                    <Form.Label>Select Standard(s) {subject && <span>for {subject}</span>}</Form.Label>
+                    
+                    <Form.Select value={selectedStandard1} defaultValue="" onChange={(e) => setSelectedStandard1(e.target.value)}>
+                        <option hidden>Standard Selection 1</option>
+                        {arrayOfStandards.map(standardObj => {
+                                let description = standardObj.description.replace(/<\/?[^>]+>/gi, '')
+
+                                // return <div>
+                                //         <input type="checkbox" id={standardObj.id} value={standardObj.id} />
+                                //         <label for={standardObj.id}><b>{standardObj.statementNotation}:</b> {description}</label>
+                                //         </div>
+
+                                return <option>{standardObj.statementNotation}: {description}</option>
+                            })}
+                    </Form.Select>
+                    <br />
+                    <Form.Select value={selectedStandard2} defaultValue="" onChange={(e) => setSelectedStandard2(e.target.value)}>
+                        <option hidden>Standard Selection 2 (optional)</option>
+                        {arrayOfStandards.map(standardObj => {
+                                let description = standardObj.description.replace(/<\/?[^>]+>/gi, '')
+
+                                return <option>{standardObj.statementNotation}: {description}</option>
+                            })}
+                    </Form.Select>
+                    <br />
+                    <Form.Select value={selectedStandard3} defaultValue="Standard Selection 3" onChange={(e) => setSelectedStandard3(e.target.value)}>
+                        <option hidden>Standard Selection 3 (optional)</option>
+                        {arrayOfStandards.map(standardObj => {
+                                let description = standardObj.description.replace(/<\/?[^>]+>/gi, '')
+
+                                return <option>{standardObj.statementNotation}: {description}</option>
+                            })}
+                    </Form.Select>
+                    <br />
+                </>
+            }
+
+            {selectedStandard1 &&
+                <>
+                    <DailyPlan day={daysArray[0]} />
+                    <DailyPlan day={daysArray[1]} />
+                    <DailyPlan day={daysArray[2]} />
+                    <DailyPlan day={daysArray[3]} />
+                    <DailyPlan day={daysArray[4]} />
+                </>
+            }
+
+            
             
             <div className="text-center">
                 <Button type="submit">Submit</Button>
