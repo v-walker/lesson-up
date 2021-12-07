@@ -18,7 +18,8 @@ function CreatePlan() {
     const [selectedStandard1, setSelectedStandard1] = useState("");
     const [selectedStandard2, setSelectedStandard2] = useState("");
     const [selectedStandard3, setSelectedStandard3] = useState("");
-    // const dispatch = useDispatch();
+    const [dailyPlans, setDailyPlans] = useState([])
+    const dispatch = useDispatch();
     
     const georgiaData = useSelector(state => state.standardsCRD.standardSets);
     let contentAreas = georgiaData.filter(standardSetObj => {
@@ -58,9 +59,9 @@ function CreatePlan() {
         setStandards(responseData.data.data.standards);
     }
 
-    // const handleSaveDay = () => {
+    const handleSaveDailyPlan = () => {
         
-    // }
+    }
 
     // console.log(gradeLevel);
 

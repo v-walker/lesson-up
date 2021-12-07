@@ -4,7 +4,6 @@ const initialState = {
     stateIdentifiers: [],
     standardSets: [],
     standards: [],
-    planData: []
 }
 
 const standardsReducer = (state = initialState, action) => {
