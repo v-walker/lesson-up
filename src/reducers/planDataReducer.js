@@ -11,16 +11,15 @@ const initialState = {
     fullPlan: []
 }
 
-const planDataReducer = (state=initialState, action) => {
+export const planDataReducer = (state=initialState, action) => {
     switch(action.type) {
         case SAVE_DAILY_PLANS:
             return {
                 ...state,
-                
+
             }
         default:
             return state
     }
-
-
 }
+
