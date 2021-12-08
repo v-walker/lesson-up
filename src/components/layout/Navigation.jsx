@@ -17,10 +17,10 @@ function Navigation() {
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="ms-auto pe-3">
-                    <Nav.Link href="/" className="ps-3 ps-md-0">Home</Nav.Link>
-                    <Nav.Link href="/create" className="ps-3 ">Create Plan</Nav.Link>
-                    <Nav.Link href="/view_plans" className="ps-3 ">View Plans</Nav.Link>
-                    <Nav.Link href="/about" className="ps-3 ">About</Nav.Link>
+                    <Link to="/" className="ps-3 ps-md-0">Home</Link>
+                    <Link to="/create" className="ps-3 ">Create Plan</Link>
+                    <Link to="/view_plans" className="ps-3 ">View Plans</Link>
+                    <Link to="/about" className="ps-3 ">About</Link>
                     
                     </Nav>
                 </Navbar.Collapse>
