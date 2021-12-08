@@ -102,98 +102,103 @@ function CreatePlan() {
     return (
         <>
             <h2 className="text-center">Let's Make a Plan!</h2>
-            <Form onSubmit={handleSaveWeeklyPlan}>
-                <Form.Group>
-                    <Form.Label>Week of </Form.Label>
-                    <Form.Control type="date" onChange={(e) => setWeekOf(e.target.value)}></Form.Control>
-                </Form.Group>
+            <div className="row d-flex justify-content-center">
+                <div className="col-12 col-md-10 col-xl-8">
+                    <Form className="p-5 p-md-0 mt-0 mb-0 mt-md-5 mb-md-5" onSubmit={handleSaveWeeklyPlan}>
+                    <Form.Group>
+                        <Form.Label>Week of </Form.Label>
+                        <Form.Control type="date" onChange={(e) => setWeekOf(e.target.value)}></Form.Control>
+                    </Form.Group>
 
-                <Form.Label onSubmit={handleSubmit}>Select Grade Level</Form.Label>
-                <Form.Select value={gradeLevel} defaultValue="Select a grade level" onChange={(e) => setGradeLevel(e.target.value)}>
-                    <option hidden>Select a grade level</option>
-                    <option>Grade K</option>
-                    <option>Grade 1</option>
-                    <option>Grade 2</option>
-                    <option>Grade 3</option>
-                    <option>Grade 4</option>
-                    <option>Grade 5</option>
-                    <option>Grade 6</option>
-                    <option>Grade 7</option>
-                    <option>Grade 8</option>
-                    <option>Grade 9</option>
-                    <option>Grade 10</option>
-                    <option>Grade 11</option>
-                    <option>Grade 12</option>
-                </Form.Select>
-            
-            {gradeLevel &&
-                <>
-                    <Form.Label>Select Content Area</Form.Label>
-                    <Form.Select value={subject} defaultValue="Select a content area" onChange={(e) => handleSubjectSelection(e)}>
-                        <option hidden>Select a content area</option>
-                        {contentAreas.map(contentObj => {
-                            return <option key={contentObj.id} id={contentObj.id}>{contentObj.subject}</option>
-                        })}
+                    <Form.Label onSubmit={handleSubmit}>Select Grade Level</Form.Label>
+                    <Form.Select value={gradeLevel} defaultValue="Select a grade level" onChange={(e) => setGradeLevel(e.target.value)}>
+                        <option hidden>Select a grade level</option>
+                        <option>Grade K</option>
+                        <option>Grade 1</option>
+                        <option>Grade 2</option>
+                        <option>Grade 3</option>
+                        <option>Grade 4</option>
+                        <option>Grade 5</option>
+                        <option>Grade 6</option>
+                        <option>Grade 7</option>
+                        <option>Grade 8</option>
+                        <option>Grade 9</option>
+                        <option>Grade 10</option>
+                        <option>Grade 11</option>
+                        <option>Grade 12</option>
                     </Form.Select>
-                </>
-            } {/* end of grade level and standards section */}
-
-            {subject &&
-                <>
-                    <Form.Label>Select Standard(s) {subject && <span>for {subject}</span>}</Form.Label>
-                    
-                    <Form.Select value={selectedStandard1} defaultValue="" onChange={(e) => setSelectedStandard1(e.target.value)}>
-                        <option hidden>Standard Selection 1</option>
-                        {arrayOfStandards.map(standardObj => {
-                                let description = standardObj.description.replace(/<\/?[^>]+>/gi, '')
-
-                                return <option>{standardObj.statementNotation} {description}</option>
+                
+                {gradeLevel &&
+                    <>
+                        <Form.Label>Select Content Area</Form.Label>
+                        <Form.Select value={subject} defaultValue="Select a content area" onChange={(e) => handleSubjectSelection(e)}>
+                            <option hidden>Select a content area</option>
+                            {contentAreas.map(contentObj => {
+                                return <option key={contentObj.id} id={contentObj.id}>{contentObj.subject}</option>
                             })}
-                    </Form.Select>
-                    <br />
-                    <Form.Select value={selectedStandard2} defaultValue="" onChange={(e) => setSelectedStandard2(e.target.value)}>
-                        <option hidden>Standard Selection 2 (optional)</option>
-                        {arrayOfStandards.map(standardObj => {
-                                let description = standardObj.description.replace(/<\/?[^>]+>/gi, '')
+                        </Form.Select>
+                    </>
+                } {/* end of grade level and standards section */}
 
-                                return <option>{standardObj.statementNotation}: {description}</option>
+                {subject &&
+                    <>
+                        <Form.Label>Select Standard(s) {subject && <span>for {subject}</span>}</Form.Label>
+                        
+                        <Form.Select value={selectedStandard1} defaultValue="" onChange={(e) => setSelectedStandard1(e.target.value)}>
+                            <option hidden>Standard Selection 1</option>
+                            {arrayOfStandards.map(standardObj => {
+                                    let description = standardObj.description.replace(/<\/?[^>]+>/gi, '')
+
+                                    return <option>{standardObj.statementNotation} {description}</option>
+                                })}
+                        </Form.Select>
+                        <br />
+                        <Form.Select value={selectedStandard2} defaultValue="" onChange={(e) => setSelectedStandard2(e.target.value)}>
+                            <option hidden>Standard Selection 2 (optional)</option>
+                            {arrayOfStandards.map(standardObj => {
+                                    let description = standardObj.description.replace(/<\/?[^>]+>/gi, '')
+
+                                    return <option>{standardObj.statementNotation}: {description}</option>
+                                })}
+                        </Form.Select>
+                        <br />
+                        <Form.Select value={selectedStandard3} defaultValue="Standard Selection 3" onChange={(e) => setSelectedStandard3(e.target.value)}>
+                            <option hidden>Standard Selection 3 (optional)</option>
+                            {arrayOfStandards.map(standardObj => {
+                                    let description = standardObj.description.replace(/<\/?[^>]+>/gi, '')
+
+                                    return <option>{standardObj.statementNotation}: {description}</option>
+                                })}
+                        </Form.Select>
+                        <br />
+                    </>
+                }
+
+                
+                {selectedStandard1 &&
+                    <>  
+                        <Tabs defaultActiveKey="Monday" id="day-tabs" className="mb-3">
+                            {daysArray.map(day => {
+                                return (
+                                    <Tab eventKey={day} title={day}>
+                                        <DailyPlan day={day} handleSaveDailyPlan={(dailyPlanData) => handleSaveDailyPlan(dailyPlanData, day)} />
+                                    </Tab>
+                                )
                             })}
-                    </Form.Select>
-                    <br />
-                    <Form.Select value={selectedStandard3} defaultValue="Standard Selection 3" onChange={(e) => setSelectedStandard3(e.target.value)}>
-                        <option hidden>Standard Selection 3 (optional)</option>
-                        {arrayOfStandards.map(standardObj => {
-                                let description = standardObj.description.replace(/<\/?[^>]+>/gi, '')
+                        </Tabs>
+                    </>
+                }
 
-                                return <option>{standardObj.statementNotation}: {description}</option>
-                            })}
-                    </Form.Select>
-                    <br />
-                </>
-            }
-
-            
-            {selectedStandard1 &&
-                <>  
-                    <Tabs defaultActiveKey="Monday" id="day-tabs" className="mb-3">
-                        {daysArray.map(day => {
-                            return (
-                                <Tab eventKey={day} title={day}>
-                                    <DailyPlan day={day} handleSaveDailyPlan={(dailyPlanData) => handleSaveDailyPlan(dailyPlanData, day)} />
-                                </Tab>
-                            )
-                        })}
-                    </Tabs>
-                </>
-            }
-
-            {checkDaysinPlanArray(dailyPlans) && 
-                <div className="d-flex justify-content-center">
-                <Button type="submit" className="btn-success">Submit Full Weekly Plan</Button>
+                {checkDaysinPlanArray(dailyPlans) && 
+                    <div className="d-flex justify-content-center">
+                    <Button type="submit" className="btn-success">Submit Full Weekly Plan</Button>
+                    </div>
+                }
+                
+                </Form>
                 </div>
-            }
+            </div>
             
-            </Form>
         </>
     )
 }
