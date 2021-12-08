@@ -18,14 +18,15 @@ function CreatePlan() {
     const [selectedStandard1, setSelectedStandard1] = useState("");
     const [selectedStandard2, setSelectedStandard2] = useState("");
     const [selectedStandard3, setSelectedStandard3] = useState("");
-    const [dailyPlans, setDailyPlans] = useState([])
-    const dispatch = useDispatch();
+    const [dailyPlans, setDailyPlans] = useState({})
+    // const dispatch = useDispatch();
     
     const georgiaData = useSelector(state => state.standardsCRD.standardSets);
     let contentAreas = georgiaData.filter(standardSetObj => {
         return standardSetObj.title === gradeLevel
     });
 
+    console.log("plans", dailyPlans);
 
     useEffect(() => {
         // console.log(standards);
@@ -59,8 +60,14 @@ function CreatePlan() {
         setStandards(responseData.data.data.standards);
     }
 
-    const handleSaveDailyPlan = () => {
-        
+    const handleSaveDailyPlan = (dailyPlanData, day) => {
+        // need to add storage to global state
+
+
+        setDailyPlans({
+            ...dailyPlans,
+            [day]: dailyPlanData
+        })
     }
 
     // console.log(gradeLevel);
@@ -143,24 +150,24 @@ function CreatePlan() {
                 </>
             }
 
-
+            
             {selectedStandard1 &&
-                <>
+                <>  {/* refactor this... map... */}
                     <Tabs defaultActiveKey="monday" id="day-tabs" className="mb-3">
                         <Tab eventKey="monday" title="Monday">
-                            <DailyPlan day={daysArray[0]} />
+                            <DailyPlan day={daysArray[0]} handleSaveDailyPlan={(dailyPlanData) => handleSaveDailyPlan(dailyPlanData, daysArray[0])} />
                         </Tab>
                         <Tab eventKey="tuesday" title="Tuesday">
-                            <DailyPlan day={daysArray[1]} />
+                            <DailyPlan day={daysArray[1]} handleSaveDailyPlan={(dailyPlanData) => handleSaveDailyPlan(dailyPlanData, daysArray[1])} />
                         </Tab>
                         <Tab eventKey="wednesday" title="Wednesday">
-                            <DailyPlan day={daysArray[2]} />
+                            <DailyPlan day={daysArray[2]} handleSaveDailyPlan={(dailyPlanData) => handleSaveDailyPlan(dailyPlanData, daysArray[2])} />
                         </Tab>
                         <Tab eventKey="thursday" title="Thursday">
-                            <DailyPlan day={daysArray[3]} />
+                            <DailyPlan day={daysArray[3]} handleSaveDailyPlan={(dailyPlanData) => handleSaveDailyPlan(dailyPlanData, daysArray[3])} />
                         </Tab>
                         <Tab eventKey="friday" title="Friday">
-                            <DailyPlan day={daysArray[4]} />
+                            <DailyPlan day={daysArray[4]} handleSaveDailyPlan={(dailyPlanData) => handleSaveDailyPlan(dailyPlanData, daysArray[4])} />
                         </Tab>
                     </Tabs>
                 </>

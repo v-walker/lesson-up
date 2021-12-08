@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
-function DailyPlan({day}) {
+function DailyPlan({day, handleSaveDailyPlan}) {
     const [learningTarget, setLearningTarget] = useState("");
 
     // activity checkboxes
@@ -12,6 +12,7 @@ function DailyPlan({day}) {
     const [game, setGame] = useState(false);
     const [book, setBook] = useState(false);
     const [craft, setCraft] = useState(false);
+    const [activities, setActivities] = useState([])
     
     // user input fields
     const [activityDescrip, setActivityDescrip] = useState("");
@@ -23,6 +24,8 @@ function DailyPlan({day}) {
     const [test, setTest] = useState(false);
     const [independentWork, setIndependentWork] = useState(false);
     const [observation, setObservation] = useState(false);
+    const [assessmentMethods, setAssessmentMethods] = useState([])
+
     const [assessmentDescription, setAssessmentDescription] = useState("");
 
     // accommodations
@@ -35,7 +38,22 @@ function DailyPlan({day}) {
     const [readAloud, setReadAloud] = useState(false);
     const [notes, setNotes] = useState(false);
     const [other, setOther] = useState(false);
+    const [acommodations, setAcommodations] = useState([]);
+
     const [otherAccDescription, setOtherAccDescription] = useState("");
+
+    const addCheckedItem = (state, value, array, setterForArray, setterForItem) => {
+        setterForItem(!state)
+        
+        let isFound = array.find(string => string === value);
+
+        if (isFound) {
+            let updatedArray = array.filter(string => string !== isFound);
+            setterForArray(updatedArray)
+        } else {
+            setterForArray([...array, value])
+        }
+    }
     
     return (
         <>
@@ -48,17 +66,17 @@ function DailyPlan({day}) {
             <Form.Group className="mb-3" controlId={`formBasicActivity_${day}`}>
                 <Form.Label>Activity/Activities:</Form.Label>
                 <br />
-                <input type="checkbox" value="Number Talk" checked={numberTalk} onChange={() => setNumberTalk(!numberTalk)}/> <span>Number talk</span>
+                <input type="checkbox" value="Number Talk" checked={numberTalk} onChange={(e) => addCheckedItem(numberTalk, e.target.value, activities, setActivities, setNumberTalk)}/> <span>Number talk</span>
                 <br />
-                <input type="checkbox" value="video" checked={video} onChange={() => setVideo(!video)}/> <span>Video</span>
+                <input type="checkbox" value="video" checked={video} onChange={(e) => addCheckedItem(video, e.target.value, activities, setActivities, setVideo)}/> <span>Video</span>
                 <br />
-                <input type="checkbox" value="kahoot" checked={kahoot} onChange={() => setKahoot(!kahoot)}/> <span>Kahoot</span>
+                <input type="checkbox" value="kahoot" checked={kahoot} onChange={(e) => addCheckedItem(kahoot, e.target.value, activities, setActivities, setKahoot)}/> <span>Kahoot</span>
                 <br />
-                <input type="checkbox" value="game" checked={game} onChange={() => setGame(!game)}/> <span>Game</span>
+                <input type="checkbox" value="game" checked={game} onChange={(e) => addCheckedItem(game, e.target.value, activities, setActivities, setGame)}/> <span>Game</span>
                 <br />
-                <input type="checkbox" value="book" checked={book} onChange={() => setBook(!book)}/> <span>Book</span>
+                <input type="checkbox" value="book" checked={book} onChange={(e) => addCheckedItem(book, e.target.value, activities, setActivities, setBook)}/> <span>Book</span>
                 <br />
-                <input type="checkbox" value="craft" checked={craft} onChange={() => setCraft(!craft)}/> <span>Craft</span>
+                <input type="checkbox" value="craft" checked={craft} onChange={(e) => addCheckedItem(craft, e.target.value, activities, setActivities, setCraft)}/> <span>Craft</span>
                 <br />
                 <Form.Label>Description of Activity/Activities:</Form.Label>
                 <Form.Control type="text" placeholder="Enter acitivity/activities description" value={activityDescrip} onChange={(e) => setActivityDescrip(e.target.value)} />
@@ -77,40 +95,40 @@ function DailyPlan({day}) {
             <Form.Group>
                 <Form.Label>Assessment/Graded Assignment:</Form.Label>
                 <br />
-                <input type="checkbox" value="quiz" checked={quiz} onChange={() => setQuiz(!quiz)}/> <span>Quiz</span>
+                <input type="checkbox" value="quiz" name="quiz" checked={quiz} onChange={(e) => addCheckedItem(quiz, e.target.value, assessmentMethods, setAssessmentMethods, setQuiz)}/> <span>Quiz</span>
                 <br />
-                <input type="checkbox" value="test" checked={test} onChange={() => setTest(!test)}/> <span>Test</span>
+                <input type="checkbox" value="test" name="test" checked={test} onChange={(e) => addCheckedItem(test, e.target.value, assessmentMethods, setAssessmentMethods, setTest)}/> <span>Test</span>
                 <br />
-                <input type="checkbox" value="Independent Work/Worksheet" checked={independentWork} onChange={() => setIndependentWork(!independentWork)}/> <span>Independent Work/Worksheet</span>
+                <input type="checkbox" value="Independent Work/Worksheet" name="independent" checked={independentWork} onChange={(e) => addCheckedItem(independentWork, e.target.value, assessmentMethods, setAssessmentMethods, setIndependentWork)}/> <span>Independent Work/Worksheet</span>
                 <br />
-                <input type="checkbox" value="observation" checked={observation} onChange={() => setObservation(!observation)}/> <span>Observation</span>
+                <input type="checkbox" value="observation" name="observation" checked={observation} onChange={(e) => addCheckedItem(observation, e.target.value, assessmentMethods, setAssessmentMethods, setObservation)}/> <span>Observation</span>
                 <Form.Control type="text" placeholder="Enter assessment/graded assignment description" value={assessmentDescription} onChange={(e) => setAssessmentDescription(e.target.value)} />
             </Form.Group>
 
             <Form.Group>
                 <Form.Label>Accommodations/Differentiation:</Form.Label>
                 <br />
-                <input type="checkbox" value="Small Group" checked={smallGroup} onChange={() => setSmallGroup(!smallGroup)}/> <span>Small Group</span>
+                <input type="checkbox" value="Small Group" checked={smallGroup} onChange={(e) => addCheckedItem(smallGroup, e.target.value, acommodations, setAcommodations, setSmallGroup)}/> <span>Small Group</span>
                 <br />
-                <input type="checkbox" value="Repeat Directions" checked={repeatDirections} onChange={() => setRepeatDirections(!repeatDirections)}/> <span>Repeat Directions</span>
+                <input type="checkbox" value="Repeat Directions" checked={repeatDirections} onChange={(e) => addCheckedItem(repeatDirections, e.target.value, acommodations, setAcommodations, setRepeatDirections)}/> <span>Repeat Directions</span>
                 <br />
-                <input type="checkbox" value="Visual Supports" checked={visuals} onChange={() => setVisuals(!visuals)}/> <span>Visual Supports</span>
+                <input type="checkbox" value="Visual Supports" checked={visuals} onChange={(e) => addCheckedItem(visuals, e.target.value, acommodations, setAcommodations, setVisuals)}/> <span>Visual Supports</span>
                 <br />
-                <input type="checkbox" value="Chunk assignments/directions" checked="Chunk assignments/directions" checked={chunk} onChange={() => setChunk(!chunk)}/> <span>Chunk assignments/directions</span>
+                <input type="checkbox" value="Chunk assignments/directions" checked={chunk} onChange={(e) => addCheckedItem(chunk, e.target.value, acommodations, setAcommodations, setChunk)}/> <span>Chunk assignments/directions</span>
                 <br />
-                <input type="checkbox" value="1-2 step directions/scaffold instructions" checked={scaffoldInstructions} onChange={() => setScaffoldInstructions(!scaffoldInstructions)}/> <span>1-2 step directions/scaffold instructions</span>
+                <input type="checkbox" value="1-2 step directions/scaffold instructions" checked={scaffoldInstructions} onChange={(e) => addCheckedItem(scaffoldInstructions, e.target.value, acommodations, setAcommodations, setScaffoldInstructions)}/> <span>1-2 step directions/scaffold instructions</span>
                 <br />
-                <input type="checkbox" value="Manipulatives" checked={manipulatives} onChange={() => setManipulatives(!manipulatives)}/> <span>Manipulatives</span>
+                <input type="checkbox" value="Manipulatives" checked={manipulatives} onChange={(e) => addCheckedItem(manipulatives, e.target.value, acommodations, setAcommodations, setManipulatives)}/> <span>Manipulatives</span>
                 <br />
-                <input type="checkbox" value="Read aloud directions" checked={readAloud} onChange={() => setReadAloud(!readAloud)}/> <span>Read aloud directions</span>
+                <input type="checkbox" value="Read aloud directions" checked={readAloud} onChange={(e) => addCheckedItem(readAloud, e.target.value, acommodations, setAcommodations, setReadAloud)}/> <span>Read aloud directions</span>
                 <br />
-                <input type="checkbox" value="Copy of notes/fill-in-the-blank" checked={notes} onChange={() => setNotes(!notes)}/> <span>Copy of notes/fill-in-the-blank</span>
+                <input type="checkbox" value="Copy of notes/fill-in-the-blank" checked={notes} onChange={(e) => addCheckedItem(notes, e.target.value, acommodations, setAcommodations, setNotes)}/> <span>Copy of notes/fill-in-the-blank</span>
                 <br />
-                <input type="checkbox" value="Other" checked={other} onChange={() => setOther(!other)}/> <span>Other</span>
+                <input type="checkbox" value="Other" checked={other} onChange={(e) => addCheckedItem(other, e.target.value, acommodations, setAcommodations, setOther)}/> <span>Other</span>
                 <Form.Control type="text" placeholder="Description of other accommodation(s)" value={otherAccDescription} onChange={(e) => setOtherAccDescription(e.target.value)} />
             </Form.Group>
 
-            <Button>Save {day}</Button>
+            <Button onClick={(e) => handleSaveDailyPlan({learningTarget, activities, activityDescrip, assessmentMethods, assessmentDescription, acommodations, otherAccDescription})}>Save {day}</Button>
             <hr />
 
         </>
