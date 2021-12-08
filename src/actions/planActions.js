@@ -1,4 +1,4 @@
-import { SAVE_DAILY_PLANS } from './types';
+import { SAVE_DAILY_PLANS, CLEAR_DAILY_PLANS, SAVE_WEEKLY_PLANS } from './types';
 
 const saveDailyPlans = (day, newPlanData) => {
     
@@ -9,4 +9,28 @@ const saveDailyPlans = (day, newPlanData) => {
     }
 }
 
-export { saveDailyPlans };
+const clearDailyPlans = () => {
+    
+    return {
+        type: CLEAR_DAILY_PLANS,
+    }
+}
+
+
+const saveWeeklyPlans = (weekOf, gradeLevel, subject, selectedStandard1, selectedStandard2, selectedStandard3, dailyPlans) => {
+
+    return {
+        type: SAVE_WEEKLY_PLANS,
+        data: {
+            weekOf,
+            gradeLevel,
+            subject,
+            selectedStandard1,
+            selectedStandard2,
+            selectedStandard3,
+            dailyPlans
+        }
+    }
+}
+
+export { saveDailyPlans, saveWeeklyPlans, clearDailyPlans };

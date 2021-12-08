@@ -9,8 +9,11 @@ import Tabs from 'react-bootstrap/Tabs';
 
 import DailyPlan from './DailyPlan';
 
+import { saveDailyPlans, clearDailyPlans, saveWeeklyPlans } from '../actions/planActions';
+
 function CreatePlan() {
     const daysArray = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
+    const [weekOf, setWeekOf] = useState("")
     const [gradeLevel, setGradeLevel] = useState("");
     const [subject, setSubject] = useState("");
     const [standards, setStandards] = useState({});
@@ -19,7 +22,7 @@ function CreatePlan() {
     const [selectedStandard2, setSelectedStandard2] = useState("");
     const [selectedStandard3, setSelectedStandard3] = useState("");
     const [dailyPlans, setDailyPlans] = useState({})
-    // const dispatch = useDispatch();
+    const dispatch = useDispatch();
     
     const georgiaData = useSelector(state => state.standardsCRD.standardSets);
     let contentAreas = georgiaData.filter(standardSetObj => {
@@ -73,13 +76,22 @@ function CreatePlan() {
     }
 
     const handleSaveDailyPlan = (dailyPlanData, day) => {
-        // need to add storage to global state
-
+        dispatch(saveDailyPlans(day, dailyPlanData));
 
         setDailyPlans({
             ...dailyPlans,
             [day]: dailyPlanData
         })
+    }
+
+    const handleSaveWeeklyPlan = (e) => {
+        e.preventDefault();
+        // add all of the week's daily plans to global state (set up action and case in reducer for this)
+        dispatch(saveWeeklyPlans(weekOf, gradeLevel, subject, selectedStandard1, selectedStandard2, selectedStandard3, dailyPlans))
+
+        // clear daily Plans array
+        setDailyPlans({});
+        dispatch(clearDailyPlans());
     }
 
     // console.log(gradeLevel);
@@ -90,10 +102,10 @@ function CreatePlan() {
     return (
         <>
             <h2 className="text-center">Let's Make a Plan!</h2>
-            <Form>
+            <Form onSubmit={handleSaveWeeklyPlan}>
                 <Form.Group>
                     <Form.Label>Week of </Form.Label>
-                    <Form.Control type="date"></Form.Control>
+                    <Form.Control type="date" onChange={(e) => setWeekOf(e.target.value)}></Form.Control>
                 </Form.Group>
 
                 <Form.Label onSubmit={handleSubmit}>Select Grade Level</Form.Label>
@@ -162,8 +174,7 @@ function CreatePlan() {
 
             
             {selectedStandard1 &&
-                <>  {/* refactor this... map... */}
-
+                <>  
                     <Tabs defaultActiveKey="Monday" id="day-tabs" className="mb-3">
                         {daysArray.map(day => {
                             return (
@@ -181,7 +192,6 @@ function CreatePlan() {
                 <Button type="submit" className="btn-success">Submit Full Weekly Plan</Button>
                 </div>
             }
-            
             
             </Form>
         </>
