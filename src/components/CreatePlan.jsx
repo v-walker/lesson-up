@@ -26,8 +26,6 @@ function CreatePlan() {
         return standardSetObj.title === gradeLevel
     });
 
-    console.log("plans", dailyPlans);
-
     useEffect(() => {
         // console.log(standards);
         let tempArray = [];
@@ -40,6 +38,10 @@ function CreatePlan() {
         setArrayOfStandards(tempArray);
     }, [standards])
 
+
+    useEffect(() => {
+        console.log("plans", dailyPlans);
+    }, [dailyPlans])
     
     // console.log("standards", arrayOfStandards);
 
@@ -60,6 +62,16 @@ function CreatePlan() {
         setStandards(responseData.data.data.standards);
     }
 
+    const checkDaysinPlanArray = (array) => {
+        let checkMonday = "Monday" in array;
+        let checkTuesday = "Tuesday" in array;
+        let checkWednesday = "Wednesday" in array;
+        let checkThursday = "Thursday" in array;
+        let checkFriday = "Friday" in array;
+
+        return checkMonday && checkTuesday && checkWednesday && checkThursday && checkFriday
+    }
+
     const handleSaveDailyPlan = (dailyPlanData, day) => {
         // need to add storage to global state
 
@@ -71,16 +83,19 @@ function CreatePlan() {
     }
 
     // console.log(gradeLevel);
-
     // console.log(contentAreas);
     // console.log(subject);
     // console.log("standards", standards);
-    
     
     return (
         <>
             <h2 className="text-center">Let's Make a Plan!</h2>
             <Form>
+                <Form.Group>
+                    <Form.Label>Week of </Form.Label>
+                    <Form.Control type="date"></Form.Control>
+                </Form.Group>
+
                 <Form.Label onSubmit={handleSubmit}>Select Grade Level</Form.Label>
                 <Form.Select value={gradeLevel} defaultValue="Select a grade level" onChange={(e) => setGradeLevel(e.target.value)}>
                     <option hidden>Select a grade level</option>
@@ -120,12 +135,7 @@ function CreatePlan() {
                         {arrayOfStandards.map(standardObj => {
                                 let description = standardObj.description.replace(/<\/?[^>]+>/gi, '')
 
-                                // return <div>
-                                //         <input type="checkbox" id={standardObj.id} value={standardObj.id} />
-                                //         <label for={standardObj.id}><b>{standardObj.statementNotation}:</b> {description}</label>
-                                //         </div>
-
-                                return <option>{standardObj.statementNotation}: {description}</option>
+                                return <option>{standardObj.statementNotation} {description}</option>
                             })}
                     </Form.Select>
                     <br />
@@ -153,29 +163,25 @@ function CreatePlan() {
             
             {selectedStandard1 &&
                 <>  {/* refactor this... map... */}
-                    <Tabs defaultActiveKey="monday" id="day-tabs" className="mb-3">
-                        <Tab eventKey="monday" title="Monday">
-                            <DailyPlan day={daysArray[0]} handleSaveDailyPlan={(dailyPlanData) => handleSaveDailyPlan(dailyPlanData, daysArray[0])} />
-                        </Tab>
-                        <Tab eventKey="tuesday" title="Tuesday">
-                            <DailyPlan day={daysArray[1]} handleSaveDailyPlan={(dailyPlanData) => handleSaveDailyPlan(dailyPlanData, daysArray[1])} />
-                        </Tab>
-                        <Tab eventKey="wednesday" title="Wednesday">
-                            <DailyPlan day={daysArray[2]} handleSaveDailyPlan={(dailyPlanData) => handleSaveDailyPlan(dailyPlanData, daysArray[2])} />
-                        </Tab>
-                        <Tab eventKey="thursday" title="Thursday">
-                            <DailyPlan day={daysArray[3]} handleSaveDailyPlan={(dailyPlanData) => handleSaveDailyPlan(dailyPlanData, daysArray[3])} />
-                        </Tab>
-                        <Tab eventKey="friday" title="Friday">
-                            <DailyPlan day={daysArray[4]} handleSaveDailyPlan={(dailyPlanData) => handleSaveDailyPlan(dailyPlanData, daysArray[4])} />
-                        </Tab>
+
+                    <Tabs defaultActiveKey="Monday" id="day-tabs" className="mb-3">
+                        {daysArray.map(day => {
+                            return (
+                                <Tab eventKey={day} title={day}>
+                                    <DailyPlan day={day} handleSaveDailyPlan={(dailyPlanData) => handleSaveDailyPlan(dailyPlanData, day)} />
+                                </Tab>
+                            )
+                        })}
                     </Tabs>
                 </>
             }
 
-            <div className="text-center">
-                <Button type="submit">Submit</Button>
-            </div>
+            {checkDaysinPlanArray(dailyPlans) && 
+                <div className="d-flex justify-content-center">
+                <Button type="submit" className="btn-success">Submit Full Weekly Plan</Button>
+                </div>
+            }
+            
             
             </Form>
         </>

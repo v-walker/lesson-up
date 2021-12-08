@@ -3,6 +3,8 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
 function DailyPlan({day, handleSaveDailyPlan}) {
+    const [noSchool, setNoSchool] = useState(false);
+
     const [learningTarget, setLearningTarget] = useState("");
 
     // activity checkboxes
@@ -58,6 +60,12 @@ function DailyPlan({day, handleSaveDailyPlan}) {
     return (
         <>
             <h3><b>Daily Plan:</b> {day}</h3>
+            <Form.Group>
+                <input type="checkbox" value="No school/holiday" checked={noSchool} onChange={() => setNoSchool(!noSchool)}/>
+                <span> No School/Holiday</span>
+                <br /> <br />
+            </Form.Group>
+
             <Form.Group className="mb-3" controlId={`formBasicLearningTarget_${day}`}>
                 <Form.Label>Daily Learning Target:</Form.Label>
                 <Form.Control type="text" placeholder="Enter daily learning target" value={learningTarget} onChange={(e) => setLearningTarget(e.target.value)} />
@@ -89,7 +97,7 @@ function DailyPlan({day, handleSaveDailyPlan}) {
 
             <Form.Group>
                 <Form.Label>Lesson:</Form.Label>
-                <Form.Control type="text" placeholder="Enter lesson description/information" value={lesson} onChange={(e) => setLesson(e.target.value)} />
+                <Form.Control as="textarea" rows="5" placeholder="Enter lesson description/information" value={lesson} onChange={(e) => setLesson(e.target.value)} />
             </Form.Group>
 
             <Form.Group>
@@ -125,10 +133,12 @@ function DailyPlan({day, handleSaveDailyPlan}) {
                 <input type="checkbox" value="Copy of notes/fill-in-the-blank" checked={notes} onChange={(e) => addCheckedItem(notes, e.target.value, acommodations, setAcommodations, setNotes)}/> <span>Copy of notes/fill-in-the-blank</span>
                 <br />
                 <input type="checkbox" value="Other" checked={other} onChange={(e) => addCheckedItem(other, e.target.value, acommodations, setAcommodations, setOther)}/> <span>Other</span>
-                <Form.Control type="text" placeholder="Description of other accommodation(s)" value={otherAccDescription} onChange={(e) => setOtherAccDescription(e.target.value)} />
+                <Form.Control type="text" placeholder="Enter list/description of other accommodation(s)" value={otherAccDescription} onChange={(e) => setOtherAccDescription(e.target.value)} />
             </Form.Group>
 
-            <Button onClick={(e) => handleSaveDailyPlan({learningTarget, activities, activityDescrip, assessmentMethods, assessmentDescription, acommodations, otherAccDescription})}>Save {day}</Button>
+            <br />
+            <Button onClick={(e) => handleSaveDailyPlan({noSchool, learningTarget, activities, activityDescrip, assessmentMethods, assessmentDescription, acommodations, otherAccDescription})}>Save {day}</Button>
+            {/* <Button className="ms-2 btn-warning">Update {day}</Button> */}
             <hr />
 
         </>
