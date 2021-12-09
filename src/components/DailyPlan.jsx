@@ -1,11 +1,24 @@
 import React, {useState} from 'react';
+import { useSelector } from 'react-redux';
+
+// bootstrap components
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
 function DailyPlan({day, handleSaveDailyPlan}) {
-    const [noSchool, setNoSchool] = useState(false);
+    const savedNoSchool = useSelector(state => state.planCRD.dailyPlans[day].noSchool);
+    const savedLearningTarget = useSelector(state => state.planCRD.dailyPlans[day].learningTarget);
+    // const savedNumberTalk = useSelector(state => state.planCRD.dailyPlans[day].numberTalk)
 
-    const [learningTarget, setLearningTarget] = useState("");
+    const savedActivityDescrip = useSelector(state => state.planCRD.dailyPlans[day].activityDescrip);
+    const savedHook = useSelector(state => state.planCRD.dailyPlans[day].hook);
+    const savedLesson = useSelector(state => state.planCRD.dailyPlans[day].lesson);
+    const savedAssessmentDescription = useSelector(state => state.planCRD.dailyPlans[day].assessmentDescription)
+    const savedOtherAccDescription = useSelector(state => state.planCRD.dailyPlans[day].otherAccDescription)
+    
+    const [noSchool, setNoSchool] = useState(savedNoSchool || false);
+
+    const [learningTarget, setLearningTarget] = useState(savedLearningTarget || "");
 
     // activity checkboxes
     const [numberTalk, setNumberTalk] = useState(false);
@@ -17,9 +30,9 @@ function DailyPlan({day, handleSaveDailyPlan}) {
     const [activities, setActivities] = useState([])
     
     // user input fields
-    const [activityDescrip, setActivityDescrip] = useState("");
-    const [hook, setHook] = useState("");
-    const [lesson, setLesson] = useState("");
+    const [activityDescrip, setActivityDescrip] = useState(savedActivityDescrip || "");
+    const [hook, setHook] = useState(savedHook || "");
+    const [lesson, setLesson] = useState(savedLesson || "");
 
     // assessment methods
     const [quiz, setQuiz] = useState(false);
@@ -28,7 +41,7 @@ function DailyPlan({day, handleSaveDailyPlan}) {
     const [observation, setObservation] = useState(false);
     const [assessmentMethods, setAssessmentMethods] = useState([])
 
-    const [assessmentDescription, setAssessmentDescription] = useState("");
+    const [assessmentDescription, setAssessmentDescription] = useState(savedAssessmentDescription || "");
 
     // accommodations
     const [smallGroup, setSmallGroup] = useState(false);
@@ -42,24 +55,22 @@ function DailyPlan({day, handleSaveDailyPlan}) {
     const [other, setOther] = useState(false);
     const [acommodations, setAcommodations] = useState([]);
 
-    const [otherAccDescription, setOtherAccDescription] = useState("");
+    const [otherAccDescription, setOtherAccDescription] = useState(savedOtherAccDescription || "");
 
     const addCheckedItem = (state, value, array, setterForArray, setterForItem) => {
         setterForItem(!state);
         
-        let isFound = array.find(obj => obj.checkedItem === value);
-        console.log("isFound", isFound);
+        let isFound = array.find(obj => obj[value]);
+        console.log("is Found", isFound);
 
         if (isFound) {
-            let updatedArray = array.filter(obj => obj.checkedItem !== value);
+            let updatedArray = array.filter(obj => obj !== isFound);
             console.log("updated array", updatedArray);
             setterForArray(updatedArray)
         } else {
-            setterForArray([...array, {checkedItem: value, isTrue: true}]);
+            setterForArray([...array, {[value]: true}]);
         }
     }
-    
-    console.log(acommodations);
 
     return (
         <>
@@ -141,7 +152,7 @@ function DailyPlan({day, handleSaveDailyPlan}) {
             </Form.Group>
 
             <br />
-            <Button onClick={(e) => handleSaveDailyPlan({noSchool, learningTarget, activities, activityDescrip, assessmentMethods, assessmentDescription, acommodations, otherAccDescription})}>Save {day}</Button>
+            <Button onClick={(e) => handleSaveDailyPlan({noSchool, learningTarget, activities, activityDescrip, hook, lesson, assessmentMethods, assessmentDescription, acommodations, otherAccDescription})}>Save {day}</Button>
             {/* <Button className="ms-2 btn-warning">Update {day}</Button> */}
             <hr />
 

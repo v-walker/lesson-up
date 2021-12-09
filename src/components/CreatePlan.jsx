@@ -13,6 +13,9 @@ import { saveDailyPlans, clearDailyPlans, saveWeeklyPlans } from '../actions/pla
 
 function CreatePlan() {
     const daysArray = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
+
+    
+
     const [weekOf, setWeekOf] = useState("")
     const [gradeLevel, setGradeLevel] = useState("");
     const [subject, setSubject] = useState("");
@@ -24,8 +27,8 @@ function CreatePlan() {
     const [dailyPlans, setDailyPlans] = useState({})
     const dispatch = useDispatch();
     
-    const georgiaData = useSelector(state => state.standardsCRD.standardSets);
-    let contentAreas = georgiaData.filter(standardSetObj => {
+    const stateData = useSelector(state => state.standardsCRD.standardSets);
+    let contentAreas = stateData.filter(standardSetObj => {
         return standardSetObj.title === gradeLevel
     });
 
