@@ -9,9 +9,11 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
 function App() {
-  const [chosenState, setChosenState] = useState("");
+  
   const stateData = useSelector((state) => state.standardsCRD.stateIdentifiers);
   const savedState = useSelector((state) => state.standardsCRD.chosenState);
+  const [chosenState, setChosenState] = useState(savedState);
+  const [switchStates, setSwitchStates] = useState(false)
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -32,14 +34,30 @@ function App() {
     dispatch(loadStateData(stateID));
   }
   
+  console.log(switchStates);
   
   return (
     <>
       <div className="row d-flex justify-content-center">
         <div className="col-12 col-md-10 col-xl-8">
-          Hello and welcome. We're so glad you're here. Lesson up allows public school teachers to create weekly lesson plans for each content area they teach. [add more explanation and directions for use here]
+          Hello and welcome. We're so glad you're here. <br />
+          <b>Lesson Up</b> allows public school teachers to create weekly lesson plans for each content area they teach. [add more explanation and directions for use here]
           <br />
           <br />
+          {chosenState && !switchStates?
+          // user has previously used the site and chosen a state ==> show this
+          <>
+            You previously chose to plan for  <b><i>{savedState}</i></b>.
+            <br /><br />
+            <div className="d-flex justify-content-center">
+              <Button className="btn btn-warning"><Link to="/create">Continue Planning</Link></Button>
+              <Button className="ms-2 btn btn-warning" onClick={() => setSwitchStates(!switchStates)}>Plan for a different state</Button>
+            </div>
+
+          </>
+          : 
+          // user is new to the site and has not chosen a state yet OR has chosen to pick a different state ==> show this
+          <>
           Let's get started! Select your state to begin planning.
           <br />
           <br />
@@ -66,6 +84,9 @@ function App() {
 
             </>
           }
+          </>}
+
+          
 
         </div>
       </div>
