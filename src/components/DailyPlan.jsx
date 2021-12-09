@@ -6,37 +6,84 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
 function DailyPlan({day, handleSaveDailyPlan}) {
+    // saved values from redux global state
     const savedNoSchool = useSelector(state => state.planCRD.dailyPlans[day].noSchool);
     const savedLearningTarget = useSelector(state => state.planCRD.dailyPlans[day].learningTarget);
-    // const savedNumberTalk = useSelector(state => state.planCRD.dailyPlans[day].activities.includes("Number talk"));
-    // console.log("saved number talk", savedNumberTalk);
+    const savedActivities = useSelector(state => state.planCRD.dailyPlans[day].activities);
+    console.log(savedActivities);
 
-
-    // let savedNumberTalk = useSelector(state => state.planCRD.dailyPlans[day].activities).includes("Number Talk");
-    // console.log("saved number talk", savedNumberTalk);
-
-    
-    // let savedNumberTalk = savedActivityArray.includes("Number Talk");
-    // console.log(savedNumberTalk);
+    let savedNumberTalk;
+    let savedVideo;
+    let savedKahoot;
+    let savedGame;
+    let savedBook;
+    let savedCraft;
+        if (savedActivities) {
+            savedNumberTalk = savedActivities.includes("Number talk");
+            savedVideo = savedActivities.includes("Video");
+            savedKahoot = savedActivities.includes("Kahoot");
+            savedGame = savedActivities.includes("Game");
+            savedBook = savedActivities.includes("Book");
+            savedCraft = savedActivities.includes("Craft");
+        }
 
     const savedActivityDescrip = useSelector(state => state.planCRD.dailyPlans[day].activityDescrip);
     const savedHook = useSelector(state => state.planCRD.dailyPlans[day].hook);
     const savedLesson = useSelector(state => state.planCRD.dailyPlans[day].lesson);
-    const savedAssessmentDescription = useSelector(state => state.planCRD.dailyPlans[day].assessmentDescription)
-    const savedOtherAccDescription = useSelector(state => state.planCRD.dailyPlans[day].otherAccDescription)
+    const savedAssessmentMethods = useSelector(state => state.planCRD.dailyPlans[day].assessmentMethods);
+    console.log("assessment", savedAssessmentMethods);
+
+    let savedQuiz;
+    let savedTest;
+    let savedIndependentWork;
+    let savedObservation;
+        if (savedAssessmentMethods) {
+            savedQuiz = savedActivities.includes("Quiz");
+            savedTest = savedActivities.includes("Test");
+            savedIndependentWork = savedActivities.includes("Independent work/worksheet");
+            savedObservation = savedActivities.includes("Observation");
+        }
+
+    const savedAssessmentDescription = useSelector(state => state.planCRD.dailyPlans[day].assessmentDescription);
+    const savedAccommodations = useSelector(state => state.planCRD.dailyPlans[day].accommodations);
+
+    let savedSmallGroup;
+    let savedRepeatDirections;
+    let savedVisuals;
+    let savedChunk;
+    let savedScaffoldInstructions;
+    let savedManipulatives;
+    let savedReadAloud;
+    let savedNotes;
+    let savedOther;
+        if (savedAccommodations) {
+            savedSmallGroup = savedAccommodations.includes("Small group");
+            savedRepeatDirections = savedAccommodations.includes("Repeat directions")
+            savedVisuals = savedAccommodations.includes("Visual supports");
+            savedChunk = savedAccommodations.includes("Chunk assignments/directions");
+            savedScaffoldInstructions = savedAccommodations.includes("1-2 step directions/scaffold instructions");
+            savedManipulatives = savedAccommodations.includes("Manipulatives");
+            savedReadAloud = savedAccommodations.includes("Read aloud directions");
+            savedNotes = savedAccommodations.includes("Copy of notes/fill-in-the-blank");
+            savedOther = savedAccommodations.includes("Other");
+        }
     
+    const savedOtherAccDescription = useSelector(state => state.planCRD.dailyPlans[day].otherAccDescription);
+    
+
+    // initial local state values
     const [noSchool, setNoSchool] = useState(savedNoSchool || false);
 
     const [learningTarget, setLearningTarget] = useState(savedLearningTarget || "");
 
     // activity checkboxes
-    const [numberTalk, setNumberTalk] = useState(false);
-    const [video, setVideo] = useState(false);
-    const [kahoot, setKahoot] = useState(false);
-    const [game, setGame] = useState(false);
-    const [book, setBook] = useState(false);
-    const [craft, setCraft] = useState(false);
-    const [activities, setActivities] = useState([])
+    const [numberTalk, setNumberTalk] = useState(savedNumberTalk || false);
+    const [video, setVideo] = useState(savedVideo || false);
+    const [kahoot, setKahoot] = useState(savedKahoot || false);
+    const [game, setGame] = useState(savedGame || false);
+    const [book, setBook] = useState(savedBook || false);
+    const [craft, setCraft] = useState(savedCraft || false);
+    const [activities, setActivities] = useState(savedActivities || [])
     
     // user input fields
     const [activityDescrip, setActivityDescrip] = useState(savedActivityDescrip || "");
@@ -44,25 +91,25 @@ function DailyPlan({day, handleSaveDailyPlan}) {
     const [lesson, setLesson] = useState(savedLesson || "");
 
     // assessment methods
-    const [quiz, setQuiz] = useState(false);
-    const [test, setTest] = useState(false);
-    const [independentWork, setIndependentWork] = useState(false);
-    const [observation, setObservation] = useState(false);
-    const [assessmentMethods, setAssessmentMethods] = useState([])
+    const [quiz, setQuiz] = useState(savedQuiz || false);
+    const [test, setTest] = useState(savedTest || false);
+    const [independentWork, setIndependentWork] = useState(savedIndependentWork || false);
+    const [observation, setObservation] = useState(savedObservation || false);
+    const [assessmentMethods, setAssessmentMethods] = useState(savedAssessmentMethods || []);
 
     const [assessmentDescription, setAssessmentDescription] = useState(savedAssessmentDescription || "");
 
     // accommodations
-    const [smallGroup, setSmallGroup] = useState(false);
-    const [repeatDirections, setRepeatDirections] = useState(false);
-    const [visuals, setVisuals] = useState(false);
-    const [chunk, setChunk] = useState(false);
-    const [scaffoldInstructions, setScaffoldInstructions] = useState(false);
-    const [manipulatives, setManipulatives] = useState(false);
-    const [readAloud, setReadAloud] = useState(false);
-    const [notes, setNotes] = useState(false);
-    const [other, setOther] = useState(false);
-    const [acommodations, setAcommodations] = useState([]);
+    const [smallGroup, setSmallGroup] = useState(savedSmallGroup || false);
+    const [repeatDirections, setRepeatDirections] = useState(savedRepeatDirections || false);
+    const [visuals, setVisuals] = useState(savedVisuals ||false);
+    const [chunk, setChunk] = useState(savedChunk || false);
+    const [scaffoldInstructions, setScaffoldInstructions] = useState(savedScaffoldInstructions || false);
+    const [manipulatives, setManipulatives] = useState(savedManipulatives || false);
+    const [readAloud, setReadAloud] = useState(savedReadAloud || false);
+    const [notes, setNotes] = useState(savedNotes || false);
+    const [other, setOther] = useState(savedOther || false);
+    const [accommodations, setAccommodations] = useState(savedAccommodations || []);
 
     const [otherAccDescription, setOtherAccDescription] = useState(savedOtherAccDescription || "");
 
@@ -141,28 +188,28 @@ function DailyPlan({day, handleSaveDailyPlan}) {
             <Form.Group>
                 <Form.Label>Accommodations/Differentiation:</Form.Label>
                 <br />
-                <input type="checkbox" value="Small Group" checked={smallGroup} onChange={(e) => addCheckedItem(smallGroup, e.target.value, acommodations, setAcommodations, setSmallGroup)}/> <span>Small Group</span>
+                <input type="checkbox" value="Small group" checked={smallGroup} onChange={(e) => addCheckedItem(smallGroup, e.target.value, accommodations, setAccommodations, setSmallGroup)}/> <span>Small Group</span>
                 <br />
-                <input type="checkbox" value="Repeat Directions" checked={repeatDirections} onChange={(e) => addCheckedItem(repeatDirections, e.target.value, acommodations, setAcommodations, setRepeatDirections)}/> <span>Repeat Directions</span>
+                <input type="checkbox" value="Repeat directions" checked={repeatDirections} onChange={(e) => addCheckedItem(repeatDirections, e.target.value, accommodations, setAccommodations, setRepeatDirections)}/> <span>Repeat Directions</span>
                 <br />
-                <input type="checkbox" value="Visual Supports" checked={visuals} onChange={(e) => addCheckedItem(visuals, e.target.value, acommodations, setAcommodations, setVisuals)}/> <span>Visual Supports</span>
+                <input type="checkbox" value="Visual supports" checked={visuals} onChange={(e) => addCheckedItem(visuals, e.target.value, accommodations, setAccommodations, setVisuals)}/> <span>Visual Supports</span>
                 <br />
-                <input type="checkbox" value="Chunk assignments/directions" checked={chunk} onChange={(e) => addCheckedItem(chunk, e.target.value, acommodations, setAcommodations, setChunk)}/> <span>Chunk assignments/directions</span>
+                <input type="checkbox" value="Chunk assignments/directions" checked={chunk} onChange={(e) => addCheckedItem(chunk, e.target.value, accommodations, setAccommodations, setChunk)}/> <span>Chunk assignments/directions</span>
                 <br />
-                <input type="checkbox" value="1-2 step directions/scaffold instructions" checked={scaffoldInstructions} onChange={(e) => addCheckedItem(scaffoldInstructions, e.target.value, acommodations, setAcommodations, setScaffoldInstructions)}/> <span>1-2 step directions/scaffold instructions</span>
+                <input type="checkbox" value="1-2 step directions/scaffold instructions" checked={scaffoldInstructions} onChange={(e) => addCheckedItem(scaffoldInstructions, e.target.value, accommodations, setAccommodations, setScaffoldInstructions)}/> <span>1-2 step directions/scaffold instructions</span>
                 <br />
-                <input type="checkbox" value="Manipulatives" checked={manipulatives} onChange={(e) => addCheckedItem(manipulatives, e.target.value, acommodations, setAcommodations, setManipulatives)}/> <span>Manipulatives</span>
+                <input type="checkbox" value="Manipulatives" checked={manipulatives} onChange={(e) => addCheckedItem(manipulatives, e.target.value, accommodations, setAccommodations, setManipulatives)}/> <span>Manipulatives</span>
                 <br />
-                <input type="checkbox" value="Read aloud directions" checked={readAloud} onChange={(e) => addCheckedItem(readAloud, e.target.value, acommodations, setAcommodations, setReadAloud)}/> <span>Read aloud directions</span>
+                <input type="checkbox" value="Read aloud directions" checked={readAloud} onChange={(e) => addCheckedItem(readAloud, e.target.value, accommodations, setAccommodations, setReadAloud)}/> <span>Read aloud directions</span>
                 <br />
-                <input type="checkbox" value="Copy of notes/fill-in-the-blank" checked={notes} onChange={(e) => addCheckedItem(notes, e.target.value, acommodations, setAcommodations, setNotes)}/> <span>Copy of notes/fill-in-the-blank</span>
+                <input type="checkbox" value="Copy of notes/fill-in-the-blank" checked={notes} onChange={(e) => addCheckedItem(notes, e.target.value, accommodations, setAccommodations, setNotes)}/> <span>Copy of notes/fill-in-the-blank</span>
                 <br />
-                <input type="checkbox" value="Other" checked={other} onChange={(e) => addCheckedItem(other, e.target.value, acommodations, setAcommodations, setOther)}/> <span>Other</span>
+                <input type="checkbox" value="Other" checked={other} onChange={(e) => addCheckedItem(other, e.target.value, accommodations, setAccommodations, setOther)}/> <span>Other</span>
                 <Form.Control type="text" placeholder="Enter list/description of other accommodation(s)" value={otherAccDescription} onChange={(e) => setOtherAccDescription(e.target.value)} />
             </Form.Group>
 
             <br />
-            <Button onClick={(e) => handleSaveDailyPlan({noSchool, learningTarget, activities, activityDescrip, hook, lesson, assessmentMethods, assessmentDescription, acommodations, otherAccDescription})}>Save {day}</Button>
+            <Button onClick={(e) => handleSaveDailyPlan({noSchool, learningTarget, activities, activityDescrip, hook, lesson, assessmentMethods, assessmentDescription, accommodations, otherAccDescription})}>Save {day}</Button>
             {/* <Button className="ms-2 btn-warning">Update {day}</Button> */}
             <hr />
 

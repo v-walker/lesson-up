@@ -14,7 +14,7 @@ import { saveDailyPlans, clearDailyPlans, saveWeeklyPlans } from '../actions/pla
 function CreatePlan() {
     const daysArray = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
 
-    
+
 
     const [weekOf, setWeekOf] = useState("")
     const [gradeLevel, setGradeLevel] = useState("");
@@ -85,6 +85,8 @@ function CreatePlan() {
             ...dailyPlans,
             [day]: dailyPlanData
         })
+
+        alert(`Daily plan for ${day} saved!`)
     }
 
     const handleSaveWeeklyPlan = (e) => {
