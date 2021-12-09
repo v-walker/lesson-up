@@ -11,6 +11,8 @@ import './index.css';
 import App from './App';
 import BaseLayout from './components/layout/BaseLayout';
 import CreatePlan from './components/CreatePlan';
+import ViewPlans from './components/ViewPlans';
+import About from './components/About'
 
 const saveToLocalStorage = (reduxGlobalState) => {
   // serialization = converting js object to a string
@@ -58,6 +60,8 @@ ReactDOM.render(
           <Routes>
             <Route path="/" element={<App />} />
             <Route path="/create" element={<CreatePlan />} />
+            <Route path="/view_plans" element={<ViewPlans />} />
+            <Route path="/about" element={<About />} />
           </Routes>
         </BaseLayout>
       </Router>

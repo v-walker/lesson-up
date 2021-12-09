@@ -1,9 +1,9 @@
-import { LOAD_STATES_IDENTIFIERS, LOAD_STATE_DATA, LOAD_JURISDICTIONS } from "../actions/types";
+import { LOAD_STATES_IDENTIFIERS, LOAD_STATE_DATA, SAVE_CHOSEN_STATE } from "../actions/types";
 
 const initialState = {
     stateIdentifiers: [],
+    chosenState: "",
     standardSets: [],
-    standards: [],
 }
 
 const standardsReducer = (state = initialState, action) => {
@@ -14,16 +14,16 @@ const standardsReducer = (state = initialState, action) => {
                 ...state,
                 stateIdentifiers: action.stateIdentifierData
             }
+        case SAVE_CHOSEN_STATE:
+            return {
+                ...state,
+                chosenState: action.chosenState
+            }
         case LOAD_STATE_DATA:
             return {
                 ...state,
                 standardSets: action.standardSets
             }
-        // case GET_STANDARDS:
-        //     return {
-        //         ...state,
-        //         standards: [...state.standards, action.standards]
-        //     }
         default: 
             return state;
     }
