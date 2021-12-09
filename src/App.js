@@ -44,10 +44,10 @@ function App() {
           <b>Lesson Up</b> allows public school teachers to create weekly lesson plans for each content area they teach. [add more explanation and directions for use here]
           <br />
           <br />
-          {chosenState && !switchStates?
+          {(chosenState && !switchStates)?
           // user has previously used the site and chosen a state ==> show this
           <>
-            You previously chose to plan for  <b><i>{savedState}</i></b>.
+            You have chosen to plan for  <b><i>{savedState}</i></b>.
             <br /><br />
             <div className="d-flex justify-content-center">
               <Button className="btn btn-warning"><Link to="/create">Continue Planning</Link></Button>
@@ -71,7 +71,7 @@ function App() {
             </Form.Select>
           </Form>
 
-          {savedState && 
+          {chosenState && 
             <> 
             <br />
             <br />
