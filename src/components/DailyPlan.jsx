@@ -45,18 +45,22 @@ function DailyPlan({day, handleSaveDailyPlan}) {
     const [otherAccDescription, setOtherAccDescription] = useState("");
 
     const addCheckedItem = (state, value, array, setterForArray, setterForItem) => {
-        setterForItem(!state)
+        setterForItem(!state);
         
-        let isFound = array.find(string => string === value);
+        let isFound = array.find(obj => obj.checkedItem === value);
+        console.log("isFound", isFound);
 
         if (isFound) {
-            let updatedArray = array.filter(string => string !== isFound);
+            let updatedArray = array.filter(obj => obj.checkedItem !== value);
+            console.log("updated array", updatedArray);
             setterForArray(updatedArray)
         } else {
-            setterForArray([...array, value])
+            setterForArray([...array, {checkedItem: value, isTrue: true}]);
         }
     }
     
+    console.log(acommodations);
+
     return (
         <>
             <h3><b>Daily Plan:</b> {day}</h3>
