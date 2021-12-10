@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
+import Moment from 'react-moment';
 
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
@@ -22,7 +23,6 @@ function CreatePlan() {
     const savedSelectedStandard2 = useSelector(state => state.planCRD.contentAreaData.selectedStandard2);
     const savedSelectedStandard3 = useSelector(state => state.planCRD.contentAreaData.selectedStandard3);
     const savedTime = useSelector(state => state.planCRD.contentAreaData.time);
-
 
     console.log("week of", savedWeekOf);
     console.log("standard1", savedSelectedStandard1);
@@ -142,7 +142,19 @@ function CreatePlan() {
                 <div className="col-12 col-md-10 col-xl-8">
                     <Form className="p-5 p-md-0 mt-0 mb-0 mt-md-5 mb-md-5" onSubmit={handleSaveWeeklyPlan}>
                     <Form.Group>
-                        <Form.Label>Week of </Form.Label>
+                    
+                        
+                        {savedWeekOf && 
+                        <> You previously selected and saved: &nbsp;Week of&nbsp;
+                            <Moment format="MM/DD/YYYY">
+                            {weekOf}
+                            </Moment>
+                            <br />
+                            Use the date picker below to select a different date if you need to change it.
+                            <br />
+                        </>
+                        }
+                        <Form.Label>Week of</Form.Label> &nbsp;
                         <Form.Control type="date" onChange={(e) => setWeekOf(e.target.value)}></Form.Control>
                     </Form.Group>
 
