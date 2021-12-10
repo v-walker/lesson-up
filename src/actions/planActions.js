@@ -1,4 +1,12 @@
-import { SAVE_DAILY_PLANS, CLEAR_DAILY_PLANS, SAVE_WEEKLY_PLANS } from './types';
+import { SAVE_DAILY_PLANS, CLEAR_DAILY_PLANS, SAVE_WEEKLY_PLANS, SAVE_CONTENT_AREA_DATA } from './types';
+
+const saveContentAreaData = (contentAreaData) => {
+
+    return {
+        type: SAVE_CONTENT_AREA_DATA,
+        contentAreaData
+    }
+}
 
 const saveDailyPlans = (day, newPlanData) => {
     
@@ -33,4 +41,4 @@ const saveWeeklyPlans = (weekOf, gradeLevel, subject, selectedStandard1, selecte
     }
 }
 
-export { saveDailyPlans, saveWeeklyPlans, clearDailyPlans };
+export { saveContentAreaData, saveDailyPlans, saveWeeklyPlans, clearDailyPlans };

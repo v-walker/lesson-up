@@ -9,7 +9,7 @@ import Tabs from 'react-bootstrap/Tabs';
 
 import DailyPlan from './DailyPlan';
 
-import { saveDailyPlans, clearDailyPlans, saveWeeklyPlans } from '../actions/planActions';
+import { saveContentAreaData, saveDailyPlans, clearDailyPlans, saveWeeklyPlans } from '../actions/planActions';
 
 function CreatePlan() {
     const daysArray = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
@@ -24,6 +24,7 @@ function CreatePlan() {
     const [selectedStandard1, setSelectedStandard1] = useState("");
     const [selectedStandard2, setSelectedStandard2] = useState("");
     const [selectedStandard3, setSelectedStandard3] = useState("");
+    const [time, setTime] = useState("");
     const [dailyPlans, setDailyPlans] = useState({})
     const dispatch = useDispatch();
     
@@ -103,6 +104,7 @@ function CreatePlan() {
     // console.log(contentAreas);
     // console.log(subject);
     // console.log("standards", standards);
+    console.log("Time", time);
     
     return (
         <>
@@ -134,7 +136,7 @@ function CreatePlan() {
                     </Form.Select>
                 
                 {gradeLevel &&
-                    <>
+                    <Form.Group>
                         <Form.Label>Select Content Area</Form.Label>
                         <Form.Select value={subject} defaultValue="Select a content area" onChange={(e) => handleSubjectSelection(e)}>
                             <option hidden>Select a content area</option>
@@ -142,40 +144,51 @@ function CreatePlan() {
                                 return <option key={contentObj.id} id={contentObj.id}>{contentObj.subject}</option>
                             })}
                         </Form.Select>
-                    </>
+                    </Form.Group>
                 } {/* end of grade level and standards section */}
 
                 {subject &&
                     <>
-                        <Form.Label>Select Standard(s) {subject && <span>for {subject}</span>}</Form.Label>
+                        <Form.Group className="g-0">
+                            <Form.Label>Select Standard(s) {subject && <span>for {subject}</span>}</Form.Label>
+                            
+                            <Form.Select className="" value={selectedStandard1} defaultValue="" onChange={(e) => setSelectedStandard1(e.target.value)}>
+                                <option hidden>Standard Selection 1</option>
+                                {arrayOfStandards.map(standardObj => {
+                                        let description = standardObj.description.replace(/<\/?[^>]+>/gi, '')
+
+                                        return <option>{standardObj.statementNotation} {description}</option>
+                                    })}
+                            </Form.Select>
+                            <br />
+                            <Form.Select className="" value={selectedStandard2} defaultValue="" onChange={(e) => setSelectedStandard2(e.target.value)}>
+                                <option hidden>Standard Selection 2 (optional)</option>
+                                {arrayOfStandards.map(standardObj => {
+                                        let description = standardObj.description.replace(/<\/?[^>]+>/gi, '')
+
+                                        return <option>{standardObj.statementNotation}: {description}</option>
+                                    })}
+                            </Form.Select>
+                            <br />
+                            <Form.Select className="" value={selectedStandard3} defaultValue="Standard Selection 3" onChange={(e) => setSelectedStandard3(e.target.value)}>
+                                <option hidden>Standard Selection 3 (optional)</option>
+                                {arrayOfStandards.map(standardObj => {
+                                        let description = standardObj.description.replace(/<\/?[^>]+>/gi, '')
+
+                                        return <option>{standardObj.statementNotation}: {description}</option>
+                                    })}
+                            </Form.Select>
+                            <br />
+                        </Form.Group>
+                    
+                        <Form.Group>
+                            <Form.Label>Time</Form.Label> &nbsp;
+                            <input type="time" value={time} onChange={(e) => setTime(e.target.value)}/>
+                        </Form.Group>
+                        <br />
                         
-                        <Form.Select value={selectedStandard1} defaultValue="" onChange={(e) => setSelectedStandard1(e.target.value)}>
-                            <option hidden>Standard Selection 1</option>
-                            {arrayOfStandards.map(standardObj => {
-                                    let description = standardObj.description.replace(/<\/?[^>]+>/gi, '')
-
-                                    return <option>{standardObj.statementNotation} {description}</option>
-                                })}
-                        </Form.Select>
-                        <br />
-                        <Form.Select value={selectedStandard2} defaultValue="" onChange={(e) => setSelectedStandard2(e.target.value)}>
-                            <option hidden>Standard Selection 2 (optional)</option>
-                            {arrayOfStandards.map(standardObj => {
-                                    let description = standardObj.description.replace(/<\/?[^>]+>/gi, '')
-
-                                    return <option>{standardObj.statementNotation}: {description}</option>
-                                })}
-                        </Form.Select>
-                        <br />
-                        <Form.Select value={selectedStandard3} defaultValue="Standard Selection 3" onChange={(e) => setSelectedStandard3(e.target.value)}>
-                            <option hidden>Standard Selection 3 (optional)</option>
-                            {arrayOfStandards.map(standardObj => {
-                                    let description = standardObj.description.replace(/<\/?[^>]+>/gi, '')
-
-                                    return <option>{standardObj.statementNotation}: {description}</option>
-                                })}
-                        </Form.Select>
-                        <br />
+                        {selectedStandard1 && <Button onClick={() => dispatch(saveContentAreaData({weekOf, gradeLevel, subject, selectedStandard1, selectedStandard2, selectedStandard3, time}))}>Save Content Area</Button>}
+                        <br /><br />
                     </>
                 }
 

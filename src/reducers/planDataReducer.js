@@ -1,7 +1,8 @@
-import { SAVE_DAILY_PLANS, CLEAR_DAILY_PLANS, SAVE_WEEKLY_PLANS } from '../actions/types';
+import { SAVE_DAILY_PLANS, CLEAR_DAILY_PLANS, SAVE_WEEKLY_PLANS, SAVE_CONTENT_AREA_DATA } from '../actions/types';
 import { v4 as uuidv4 } from 'uuid';
 
 const initialState = {
+    contentAreaData: {},
     dailyPlans: {
         "Monday": {},
         "Tuesday": {},
@@ -14,6 +15,12 @@ const initialState = {
 
 const planDataReducer = (state=initialState, action) => {
     switch(action.type) {
+        case SAVE_CONTENT_AREA_DATA:
+            return {
+                ...state,
+                contentAreaData: action.contentAreaData
+            }
+        
         case SAVE_DAILY_PLANS:
             return {
                 ...state,
