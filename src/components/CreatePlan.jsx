@@ -19,6 +19,8 @@ function CreatePlan() {
     const savedGradeLevel = useSelector(state => state.planCRD.contentAreaData.gradeLevel);
     const savedSubject = useSelector(state => state.planCRD.contentAreaData.subject);
     const savedSelectedStandard1 = useSelector(state => state.planCRD.contentAreaData.selectedStandard1);
+    const savedSelectedStandard2 = useSelector(state => state.planCRD.contentAreaData.selectedStandard2);
+    const savedSelectedStandard3 = useSelector(state => state.planCRD.contentAreaData.selectedStandard3);
     const savedTime = useSelector(state => state.planCRD.contentAreaData.time);
 
 
@@ -28,12 +30,12 @@ function CreatePlan() {
     // initial local state variables and setters
     const [weekOf, setWeekOf] = useState(savedWeekOf || "")
     const [gradeLevel, setGradeLevel] = useState(savedGradeLevel || "");
-    const [subject, setSubject] = useState(savedSubject || "");
+    const [subject, setSubject] = useState(savedSubject || []);
     const [standards, setStandards] = useState({});
     const [arrayOfStandards, setArrayOfStandards] = useState([]);
-    const [selectedStandard1, setSelectedStandard1] = useState("");
-    const [selectedStandard2, setSelectedStandard2] = useState("");
-    const [selectedStandard3, setSelectedStandard3] = useState("");
+    const [selectedStandard1, setSelectedStandard1] = useState(savedSelectedStandard1 || "");
+    const [selectedStandard2, setSelectedStandard2] = useState(savedSelectedStandard2 || "");
+    const [selectedStandard3, setSelectedStandard3] = useState(savedSelectedStandard3 || "");
     const [time, setTime] = useState(savedTime || "");
     const [dailyPlans, setDailyPlans] = useState({})
     const dispatch = useDispatch();
@@ -42,6 +44,19 @@ function CreatePlan() {
     let contentAreas = stateData.filter(standardSetObj => {
         return standardSetObj.title === gradeLevel
     });
+
+
+    useEffect( () => {
+        
+        const getStandardsData = async (id) => {
+            let responseData = await axios.get(`https://api.commonstandardsproject.com/api/v1/standard_sets/${id}/?api-key=${process.env.REACT_APP_CSP_API_KEY}`);
+            setStandards(responseData.data.data.standards);
+            }
+        
+        if (savedSubject) {
+            getStandardsData(savedSubject[1])
+        }
+    }, [])
 
     useEffect(() => {
         // console.log(standards);
@@ -54,6 +69,8 @@ function CreatePlan() {
 
         setArrayOfStandards(tempArray);
     }, [standards])
+
+
 
 
     useEffect(() => {
@@ -71,7 +88,7 @@ function CreatePlan() {
     const handleSubjectSelection = async (e) => {
         let id = e.target.children[e.target.selectedIndex].id;
         
-        setSubject(e.target.value);
+        setSubject([e.target.value, id]);
 
         let responseData = await axios.get(`https://api.commonstandardsproject.com/api/v1/standard_sets/${id}/?api-key=${process.env.REACT_APP_CSP_API_KEY}`)
         
@@ -150,7 +167,7 @@ function CreatePlan() {
                 {gradeLevel &&
                     <Form.Group>
                         <Form.Label>Select Content Area</Form.Label>
-                        <Form.Select value={subject} defaultValue="Select a content area" onChange={(e) => handleSubjectSelection(e)}>
+                        <Form.Select value={subject[0]} defaultValue="Select a content area" onChange={(e) => handleSubjectSelection(e)}>
                             <option hidden>Select a content area</option>
                             {contentAreas.map(contentObj => {
                                 return <option key={contentObj.id} id={contentObj.id}>{contentObj.subject}</option>
@@ -162,7 +179,7 @@ function CreatePlan() {
                 {subject &&
                     <>
                         <Form.Group className="g-0">
-                            <Form.Label>Select Standard(s) {subject && <span>for {subject}</span>}</Form.Label>
+                            <Form.Label>Select Standard(s) {subject && <span>for {gradeLevel} {subject[0]}</span>}</Form.Label>
                             
                             <Form.Select className="" value={selectedStandard1} defaultValue="" onChange={(e) => setSelectedStandard1(e.target.value)}>
                                 <option hidden>Standard Selection 1</option>
