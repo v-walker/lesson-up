@@ -107,7 +107,7 @@ function CreatePlan() {
     return (
         <>
             <h2 className="text-center">Let's Make a Plan!</h2>
-            <div className="row d-flex justify-content-center">
+            <div className="row d-flex justify-content-center m-0">
                 <div className="col-12 col-md-10 col-xl-8">
                     <Form className="p-5 p-md-0 mt-0 mb-0 mt-md-5 mb-md-5" onSubmit={handleSaveWeeklyPlan}>
                     <Form.Group>
