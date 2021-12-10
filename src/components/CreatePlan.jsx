@@ -14,17 +14,27 @@ import { saveContentAreaData, clearContentAreaData, saveDailyPlans, clearDailyPl
 function CreatePlan() {
     const daysArray = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
 
+    // saved data from Redux
+    const savedWeekOf = useSelector(state => state.planCRD.contentAreaData.weekOf);
+    const savedGradeLevel = useSelector(state => state.planCRD.contentAreaData.gradeLevel);
+    const savedSubject = useSelector(state => state.planCRD.contentAreaData.subject);
+    const savedSelectedStandard1 = useSelector(state => state.planCRD.contentAreaData.selectedStandard1);
+    const savedTime = useSelector(state => state.planCRD.contentAreaData.time);
 
 
-    const [weekOf, setWeekOf] = useState("")
-    const [gradeLevel, setGradeLevel] = useState("");
-    const [subject, setSubject] = useState("");
+    console.log("week of", savedWeekOf);
+    console.log("standard1", savedSelectedStandard1);
+
+    // initial local state variables and setters
+    const [weekOf, setWeekOf] = useState(savedWeekOf || "")
+    const [gradeLevel, setGradeLevel] = useState(savedGradeLevel || "");
+    const [subject, setSubject] = useState(savedSubject || "");
     const [standards, setStandards] = useState({});
     const [arrayOfStandards, setArrayOfStandards] = useState([]);
     const [selectedStandard1, setSelectedStandard1] = useState("");
     const [selectedStandard2, setSelectedStandard2] = useState("");
     const [selectedStandard3, setSelectedStandard3] = useState("");
-    const [time, setTime] = useState("");
+    const [time, setTime] = useState(savedTime || "");
     const [dailyPlans, setDailyPlans] = useState({})
     const dispatch = useDispatch();
     
@@ -101,11 +111,12 @@ function CreatePlan() {
         dispatch(clearDailyPlans());
     }
 
+    // log statements for testing
     // console.log(gradeLevel);
     // console.log(contentAreas);
     // console.log(subject);
     // console.log("standards", standards);
-    console.log("Time", time);
+    // console.log("Time", time);
     
     return (
         <>
@@ -157,6 +168,7 @@ function CreatePlan() {
                                 <option hidden>Standard Selection 1</option>
                                 {arrayOfStandards.map(standardObj => {
                                         let description = standardObj.description.replace(/<\/?[^>]+>/gi, '')
+                                        // let optionValue = standardObj.statementNotation + " " + description;
 
                                         return <option>{standardObj.statementNotation} {description}</option>
                                     })}

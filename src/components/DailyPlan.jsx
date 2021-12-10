@@ -10,7 +10,7 @@ function DailyPlan({day, handleSaveDailyPlan}) {
     const savedNoSchool = useSelector(state => state.planCRD.dailyPlans[day].noSchool);
     const savedLearningTarget = useSelector(state => state.planCRD.dailyPlans[day].learningTarget);
     const savedActivities = useSelector(state => state.planCRD.dailyPlans[day].activities);
-    console.log(savedActivities);
+    // console.log(savedActivities);
 
     let savedNumberTalk;
     let savedVideo;
@@ -31,7 +31,7 @@ function DailyPlan({day, handleSaveDailyPlan}) {
     const savedHook = useSelector(state => state.planCRD.dailyPlans[day].hook);
     const savedLesson = useSelector(state => state.planCRD.dailyPlans[day].lesson);
     const savedAssessmentMethods = useSelector(state => state.planCRD.dailyPlans[day].assessmentMethods);
-    console.log("assessment", savedAssessmentMethods);
+    // console.log("assessment", savedAssessmentMethods);
 
     let savedQuiz;
     let savedTest;
