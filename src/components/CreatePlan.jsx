@@ -9,7 +9,7 @@ import Tabs from 'react-bootstrap/Tabs';
 
 import DailyPlan from './DailyPlan';
 
-import { saveContentAreaData, saveDailyPlans, clearDailyPlans, saveWeeklyPlans } from '../actions/planActions';
+import { saveContentAreaData, clearContentAreaData, saveDailyPlans, clearDailyPlans, saveWeeklyPlans } from '../actions/planActions';
 
 function CreatePlan() {
     const daysArray = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
@@ -97,6 +97,7 @@ function CreatePlan() {
 
         // clear daily Plans array
         setDailyPlans({});
+        dispatch(clearContentAreaData());
         dispatch(clearDailyPlans());
     }
 
