@@ -119,13 +119,16 @@ function CreatePlan() {
 
     const handleSaveWeeklyPlan = (e) => {
         e.preventDefault();
+
         // add all of the week's daily plans to global state (set up action and case in reducer for this)
-        dispatch(saveWeeklyPlans(weekOf, gradeLevel, subject, selectedStandard1, selectedStandard2, selectedStandard3, dailyPlans))
+        dispatch(saveWeeklyPlans(weekOf, gradeLevel, subject, selectedStandard1, selectedStandard2, selectedStandard3, time, dailyPlans));
+        alert(`Weekly plan ${weekOf} for ${gradeLevel} ${subject} successfully saved!`);
 
         // clear daily Plans array
         setDailyPlans({});
         dispatch(clearContentAreaData());
         dispatch(clearDailyPlans());
+        
     }
 
     // log statements for testing

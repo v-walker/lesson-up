@@ -28,11 +28,4 @@ const loadStateData = (stateID) => async (dispatch) => {
     })
 }
 
-// const loadStateData = (params) => {
-    
-// }
-
-// georgia id: AB6E6F50DDF047E8BC3EE2CCFD33DCCC
-
-
 export { loadStateIdentifiers, loadStateData, saveChosenState }
