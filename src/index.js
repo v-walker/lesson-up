@@ -12,6 +12,7 @@ import App from './App';
 import BaseLayout from './components/layout/BaseLayout';
 import CreatePlan from './components/CreatePlan';
 import ViewPlans from './components/ViewPlans';
+import PlanPrintList from './components/PlanPrintList';
 import About from './components/About'
 
 const saveToLocalStorage = (reduxGlobalState) => {
@@ -62,6 +63,8 @@ ReactDOM.render(
             <Route path="/create" element={<CreatePlan />} />
             <Route path="/view_plans" element={<ViewPlans />} />
             <Route path="/about" element={<About />} />
+            <Route path="/print_plans" element={<PlanPrintList />} />
+            <Route />
           </Routes>
         </BaseLayout>
       </Router>
