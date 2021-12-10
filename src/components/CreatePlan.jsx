@@ -24,9 +24,6 @@ function CreatePlan() {
     const savedSelectedStandard3 = useSelector(state => state.planCRD.contentAreaData.selectedStandard3);
     const savedTime = useSelector(state => state.planCRD.contentAreaData.time);
 
-    console.log("week of", savedWeekOf);
-    console.log("standard1", savedSelectedStandard1);
-
     // initial local state variables and setters
     const [weekOf, setWeekOf] = useState(savedWeekOf || "")
     const [gradeLevel, setGradeLevel] = useState(savedGradeLevel || "");
@@ -65,25 +62,17 @@ function CreatePlan() {
             tempArray.push(standards[standard])
         };
         
-        // manipulate temp array so that items are in order by "statementNotation"
+        // need to manipulate temp array so that items are in order by "statementNotation"
 
         setArrayOfStandards(tempArray);
     }, [standards])
 
-
-
-
-    useEffect(() => {
-        console.log("plans", dailyPlans);
-    }, [dailyPlans])
+    // useEffect(() => {
+    //     console.log("plans", dailyPlans);
+    // }, [dailyPlans])
     
     // console.log("standards", arrayOfStandards);
 
-    const handleSubmit = (e) => {
-        // handles submission of completed form
-        e.preventDefault();
-
-    }
 
     const handleSubjectSelection = async (e) => {
         let id = e.target.children[e.target.selectedIndex].id;
@@ -94,6 +83,12 @@ function CreatePlan() {
         
         // console.log(responseData.data.data.standards);
         setStandards(responseData.data.data.standards);
+    }
+
+    const handleSaveContentAreaData = () => {
+        dispatch(saveContentAreaData({weekOf, gradeLevel, subject, selectedStandard1, selectedStandard2, selectedStandard3, time}));
+
+        alert("Content area data saved!")
     }
 
     const checkDaysinPlanArray = (array) => {
@@ -122,21 +117,27 @@ function CreatePlan() {
 
         // add all of the week's daily plans to global state (set up action and case in reducer for this)
         dispatch(saveWeeklyPlans(weekOf, gradeLevel, subject, selectedStandard1, selectedStandard2, selectedStandard3, time, dailyPlans));
-        alert(`Weekly plan ${weekOf} for ${gradeLevel} ${subject} successfully saved!`);
+        alert(`Weekly plan ${weekOf} for ${gradeLevel} ${subject[0]} successfully saved!`);
 
         // clear daily Plans array
         setDailyPlans({});
         dispatch(clearContentAreaData());
+
+        // clear out form variables
+        setWeekOf("");
+        setGradeLevel("");
+        setSubject([]);
+        setStandards({});
+        setArrayOfStandards([]);
+        setSelectedStandard1("");
+        setSelectedStandard2("");
+        setSelectedStandard3("");
+        setTime("");
+
         dispatch(clearDailyPlans());
         
     }
 
-    // log statements for testing
-    // console.log(gradeLevel);
-    // console.log(contentAreas);
-    // console.log(subject);
-    // console.log("standards", standards);
-    // console.log("Time", time);
     
     return (
         <>
@@ -161,7 +162,7 @@ function CreatePlan() {
                         <Form.Control type="date" onChange={(e) => setWeekOf(e.target.value)}></Form.Control>
                     </Form.Group>
 
-                    <Form.Label onSubmit={handleSubmit}>Select Grade Level</Form.Label>
+                    <Form.Label>Select Grade Level</Form.Label>
                     <Form.Select value={gradeLevel} defaultValue="Select a grade level" onChange={(e) => setGradeLevel(e.target.value)}>
                         <option hidden>Select a grade level</option>
                         <option>Grade K</option>
@@ -232,7 +233,7 @@ function CreatePlan() {
                         </Form.Group>
                         <br />
                         
-                        {selectedStandard1 && <Button onClick={() => dispatch(saveContentAreaData({weekOf, gradeLevel, subject, selectedStandard1, selectedStandard2, selectedStandard3, time}))}>Save Content Area</Button>}
+                        {selectedStandard1 && <Button onClick={() => handleSaveContentAreaData()}>Save Content Area</Button>}
                         <br /><br />
                     </>
                 }

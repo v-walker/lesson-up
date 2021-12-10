@@ -15,10 +15,10 @@ function ViewPlans() {
     console.log(savedPlans);
 
     const handleDelete = (id) => {
-        // https://react-bootstrap.github.io/components/modal/ for later refining of delete functionality
+        // https://react-bootstrap.github.io/components/modal/ for later refining of delete functionality with modals
         dispatch(deletePlan(id));
 
-        alert("Say goodbye to your plans!");
+        alert("Say goodbye to your plan!");
     }
 
     return (
@@ -36,6 +36,7 @@ function ViewPlans() {
                             {planObj.data.weekOf} 
                             </Moment>&nbsp;
                             <Button className="btn btn-danger" onClick={() => handleDelete(planObj.id)}><MdDeleteForever/></Button>
+                            <Button className="btn btn-warning"></Button>
                         </li>
                     )
                 })}
