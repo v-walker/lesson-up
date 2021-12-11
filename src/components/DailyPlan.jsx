@@ -6,11 +6,11 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
 function DailyPlan({day, handleSaveDailyPlan}) {
+    
     // saved values from redux global state
     const savedNoSchool = useSelector(state => state.planCRD.dailyPlans[day].noSchool);
     const savedLearningTarget = useSelector(state => state.planCRD.dailyPlans[day].learningTarget);
     const savedActivities = useSelector(state => state.planCRD.dailyPlans[day].activities);
-    // console.log(savedActivities);
 
     let savedNumberTalk;
     let savedVideo;
@@ -30,8 +30,8 @@ function DailyPlan({day, handleSaveDailyPlan}) {
     const savedActivityDescrip = useSelector(state => state.planCRD.dailyPlans[day].activityDescrip);
     const savedHook = useSelector(state => state.planCRD.dailyPlans[day].hook);
     const savedLesson = useSelector(state => state.planCRD.dailyPlans[day].lesson);
+    const savedClosing = useSelector(state => state.planCRD.dailyPlans[day].closing);
     const savedAssessmentMethods = useSelector(state => state.planCRD.dailyPlans[day].assessmentMethods);
-    // console.log("assessment", savedAssessmentMethods);
 
     let savedQuiz;
     let savedTest;
@@ -73,7 +73,6 @@ function DailyPlan({day, handleSaveDailyPlan}) {
 
     // initial local state values
     const [noSchool, setNoSchool] = useState(savedNoSchool || false);
-
     const [learningTarget, setLearningTarget] = useState(savedLearningTarget || "");
 
     // activity checkboxes
@@ -89,6 +88,7 @@ function DailyPlan({day, handleSaveDailyPlan}) {
     const [activityDescrip, setActivityDescrip] = useState(savedActivityDescrip || "");
     const [hook, setHook] = useState(savedHook || "");
     const [lesson, setLesson] = useState(savedLesson || "");
+    const [closing, setClosing] = useState(savedClosing || "");
 
     // assessment methods
     const [quiz, setQuiz] = useState(savedQuiz || false);
@@ -115,8 +115,6 @@ function DailyPlan({day, handleSaveDailyPlan}) {
 
     const addCheckedItem = (state, value, array, setterForArray, setterForItem) => {
         setterForItem(!state);
-
-        console.log("activities", array);
         
         let isFound = array.find(string => string === value);
         console.log(isFound);
@@ -182,7 +180,7 @@ function DailyPlan({day, handleSaveDailyPlan}) {
 
             <Form.Group>
                 <Form.Label>Closing:</Form.Label>
-                <Form.Control type="text" placeholder="Enter lesson wrap-up/closing here" value={lesson} onChange={(e) => setLesson(e.target.value)} />
+                <Form.Control type="text" placeholder="Enter lesson wrap-up/closing here" value={closing} onChange={(e) => setClosing(e.target.value)} />
             </Form.Group>
 
             <br />
@@ -226,7 +224,7 @@ function DailyPlan({day, handleSaveDailyPlan}) {
             </Form.Group>
 
             <br />
-            <Button onClick={(e) => handleSaveDailyPlan({noSchool, learningTarget, activities, activityDescrip, hook, lesson, assessmentMethods, assessmentDescription, accommodations, otherAccDescription})}>Save {day}</Button>
+            <Button onClick={(e) => handleSaveDailyPlan({noSchool, learningTarget, activities, activityDescrip, hook, lesson, closing, assessmentMethods, assessmentDescription, accommodations, otherAccDescription})}>Save {day}</Button>
             {/* <Button className="ms-2 btn-warning">Update {day}</Button> */}
             <hr />
 
