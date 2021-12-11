@@ -1,9 +1,33 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
+// local components
+import { tConvert } from '../utils';
+import { removeFromPrintList } from '../actions/planActions';
+
+// library components
+import Moment from 'react-moment';
+
+// icons
+import { CgPlayListRemove } from 'react-icons/cg'
 
 function PrintSidePlanel() {
+    const dispatch = useDispatch();
+    
+    const printList = useSelector(state => state.planCRD.printList);
+    console.log("list", printList);
+    
     return (
-        <div>
-            Print Panel
+        <div className="ms-5">
+            <h4>Print List</h4>
+
+            <ul className="mt-5">
+                {printList.map(planObj => {
+                    return (
+                        <li> <CgPlayListRemove style={{color: "red"}} onClick={() => dispatch(removeFromPrintList(planObj.id))} /> {tConvert (planObj.data.time)} {planObj.data.gradeLevel} {planObj.data.subject[0]} plan for week of&nbsp;<Moment format="MM/DD/YYYY">{planObj.data.weekOf}</Moment></li>
+                    )
+                })}
+            </ul>
         </div>
     )
 }
