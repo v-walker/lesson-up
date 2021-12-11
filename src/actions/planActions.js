@@ -32,7 +32,7 @@ const clearDailyPlans = () => {
 }
 
 
-const saveWeeklyPlans = (weekOf, gradeLevel, subject, selectedStandard1, selectedStandard2, selectedStandard3, time, dailyPlans) => {
+const saveWeeklyPlans = (weekOf, gradeLevel, subject, selectedStandard1, selectedStandard2, selectedStandard3, contentVocab, time, dailyPlans) => {
 
     return {
         type: SAVE_WEEKLY_PLANS,
@@ -43,6 +43,7 @@ const saveWeeklyPlans = (weekOf, gradeLevel, subject, selectedStandard1, selecte
             selectedStandard1,
             selectedStandard2,
             selectedStandard3,
+            contentVocab,
             time,
             dailyPlans
         }

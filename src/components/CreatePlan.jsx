@@ -22,6 +22,7 @@ function CreatePlan() {
     const savedSelectedStandard1 = useSelector(state => state.planCRD.contentAreaData.selectedStandard1);
     const savedSelectedStandard2 = useSelector(state => state.planCRD.contentAreaData.selectedStandard2);
     const savedSelectedStandard3 = useSelector(state => state.planCRD.contentAreaData.selectedStandard3);
+    const savedContentVocab = useSelector(state => state.planCRD.contentAreaData.contentVocab);
     const savedTime = useSelector(state => state.planCRD.contentAreaData.time);
 
     // initial local state variables and setters
@@ -33,6 +34,7 @@ function CreatePlan() {
     const [selectedStandard1, setSelectedStandard1] = useState(savedSelectedStandard1 || "");
     const [selectedStandard2, setSelectedStandard2] = useState(savedSelectedStandard2 || "");
     const [selectedStandard3, setSelectedStandard3] = useState(savedSelectedStandard3 || "");
+    const [contentVocab, setContentVocab] = useState(savedContentVocab || "")
     const [time, setTime] = useState(savedTime || "");
     const [dailyPlans, setDailyPlans] = useState({})
     const dispatch = useDispatch();
@@ -73,6 +75,10 @@ function CreatePlan() {
     
     // console.log("standards", arrayOfStandards);
 
+    // useEffect(() => {
+    //     console.log("vocab", contentVocab);
+    // }, [contentVocab])
+
 
     const handleSubjectSelection = async (e) => {
         let id = e.target.children[e.target.selectedIndex].id;
@@ -86,7 +92,7 @@ function CreatePlan() {
     }
 
     const handleSaveContentAreaData = () => {
-        dispatch(saveContentAreaData({weekOf, gradeLevel, subject, selectedStandard1, selectedStandard2, selectedStandard3, time}));
+        dispatch(saveContentAreaData({weekOf, gradeLevel, subject, selectedStandard1, selectedStandard2, selectedStandard3, contentVocab, time}));
 
         alert("Content area data saved!")
     }
@@ -116,7 +122,7 @@ function CreatePlan() {
         e.preventDefault();
 
         // add all of the week's daily plans to global state (set up action and case in reducer for this)
-        dispatch(saveWeeklyPlans(weekOf, gradeLevel, subject, selectedStandard1, selectedStandard2, selectedStandard3, time, dailyPlans));
+        dispatch(saveWeeklyPlans(weekOf, gradeLevel, subject, selectedStandard1, selectedStandard2, selectedStandard3, contentVocab, time, dailyPlans));
         alert(`Weekly plan ${weekOf} for ${gradeLevel} ${subject[0]} successfully saved!`);
 
         // clear daily Plans array
@@ -132,12 +138,12 @@ function CreatePlan() {
         setSelectedStandard1("");
         setSelectedStandard2("");
         setSelectedStandard3("");
+        setContentVocab("");
         setTime("");
 
         dispatch(clearDailyPlans());
         
     }
-
     
     return (
         <>
@@ -236,7 +242,7 @@ function CreatePlan() {
 
                         <Form.Group>
                             <Form.Label>Content Vocabulary</Form.Label>
-                            <Form.Control type="text" placeholder="Input content vocabulary list here"></Form.Control>
+                            <Form.Control type="text" value={contentVocab} placeholder="Input content vocabulary list here" onChange={(e) => setContentVocab(e.target.value)}></Form.Control>
                             <br />
                         </Form.Group>
                     
