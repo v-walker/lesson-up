@@ -1,5 +1,16 @@
-import { SAVE_DAILY_PLANS, CLEAR_DAILY_PLANS, SAVE_WEEKLY_PLANS, SAVE_CONTENT_AREA_DATA, CLEAR_CONTENT_AREA_DATA, DELETE_PLAN } from '../actions/types';
+// types
+import { 
+    SAVE_DAILY_PLANS, 
+    CLEAR_DAILY_PLANS, 
+    SAVE_WEEKLY_PLANS, 
+    SAVE_CONTENT_AREA_DATA, 
+    CLEAR_CONTENT_AREA_DATA, 
+    DELETE_PLAN, 
+    ADD_TO_PRINT_LIST 
+} from '../actions/types';
+
 import { v4 as uuidv4 } from 'uuid';
+import App from '../App';
 
 const initialState = {
     contentAreaData: {},
@@ -10,7 +21,8 @@ const initialState = {
         "Thursday": {},
         "Friday": {}
     },
-    fullPlans: []
+    fullPlans: [],
+    printList: []
 }
 
 const planDataReducer = (state=initialState, action) => {
@@ -57,6 +69,22 @@ const planDataReducer = (state=initialState, action) => {
                 ...state,
                 fullPlans: state.fullPlans.filter(plan => plan.id !== action.id)
             }
+        case ADD_TO_PRINT_LIST:
+            
+            let planToAdd = state.fullPlans.find(plan => plan.id === action.id);
+            console.log("plantoAdd", planToAdd);
+
+            if (!state.printList.includes(planToAdd)) {
+                return {
+                    ...state,
+                    printList: [...state.printList, planToAdd]
+                }
+            } else {
+                return {
+                    ...state
+                }
+            }
+        
         default:
             return state
     }

@@ -1,4 +1,10 @@
-import { SAVE_DAILY_PLANS, CLEAR_DAILY_PLANS, SAVE_WEEKLY_PLANS, SAVE_CONTENT_AREA_DATA, CLEAR_CONTENT_AREA_DATA, DELETE_PLAN } from './types';
+import { SAVE_DAILY_PLANS, 
+    CLEAR_DAILY_PLANS, 
+    SAVE_WEEKLY_PLANS, 
+    SAVE_CONTENT_AREA_DATA, 
+    CLEAR_CONTENT_AREA_DATA, 
+    DELETE_PLAN, 
+    ADD_TO_PRINT_LIST } from './types';
 
 const saveContentAreaData = (contentAreaData) => {
 
@@ -57,5 +63,13 @@ const deletePlan = (id) => {
     }
 }
 
+const addToPrintList = (id) => {
+    return {
+        type: ADD_TO_PRINT_LIST,
+        id
+    }
+}
 
-export { saveContentAreaData, saveDailyPlans, saveWeeklyPlans, clearDailyPlans, clearContentAreaData, deletePlan };
+
+
+export { saveContentAreaData, saveDailyPlans, saveWeeklyPlans, clearDailyPlans, clearContentAreaData, deletePlan, addToPrintList };
