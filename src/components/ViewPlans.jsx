@@ -24,6 +24,17 @@ function ViewPlans() {
         alert("Say goodbye to your plan!");
     }
 
+function tConvert (time) {
+    // Check correct time format and split into components
+    time = time.toString ().match (/^([01]\d|2[0-3])(:)([0-5]\d)(:[0-5]\d)?$/) || [time];
+    if (time.length > 1) { // If time format correct
+        time = time.slice (1);  // Remove full string match value
+        time[5] = +time[0] < 12 ? 'AM' : 'PM'; // Set AM/PM
+        time[0] = +time[0] % 12 || 12; // Adjust hours
+    }
+    return time.join (''); // return adjusted time or original string
+    }
+
     return (
         <div className="container">
             <div className="row d-flex justify-content-center">
@@ -33,12 +44,14 @@ function ViewPlans() {
                     
                     <div className="row d-flex justify-content-center">
                         {savedPlans.map(planObj => {
+                            
                             return (
                                 <Card key={planObj.id} className="mb-3 pb-3 pb-md-0" style={{maxWidth: "800px"}}>
                                     <div className="row">
                                         <div className="col-12 col-md-6 col-lg-10 d-flex align-items-center">
                                             <p className="mt-3 ms-3 me-3">
-                                                {planObj.data.gradeLevel} {planObj.data.subject[0]} weekly plan for week of&nbsp;<Moment format="MM/DD/YYYY">{planObj.data.weekOf}</Moment>
+                                                
+                                                {tConvert (planObj.data.time)} {planObj.data.gradeLevel} {planObj.data.subject[0]} plan for week of&nbsp;<Moment format="MM/DD/YYYY">{planObj.data.weekOf}</Moment>
                                             </p>
                                         </div>
                                         <div className="col-12 col-md-6 col-lg-2">
