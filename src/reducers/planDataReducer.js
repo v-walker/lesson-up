@@ -6,7 +6,8 @@ import {
     SAVE_CONTENT_AREA_DATA, 
     CLEAR_CONTENT_AREA_DATA, 
     DELETE_PLAN, 
-    ADD_TO_PRINT_LIST 
+    ADD_TO_PRINT_LIST,
+    REMOVE_FROM_PRINT_LIST 
 } from '../actions/types';
 
 import { v4 as uuidv4 } from 'uuid';
@@ -83,6 +84,11 @@ const planDataReducer = (state=initialState, action) => {
                 return {
                     ...state
                 }
+            }
+        case REMOVE_FROM_PRINT_LIST:
+            return {
+                ...state,
+                printList: state.printList.filter(plan => plan.id !== action.id)
             }
         
         default:

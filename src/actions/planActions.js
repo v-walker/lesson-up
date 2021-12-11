@@ -4,7 +4,9 @@ import { SAVE_DAILY_PLANS,
     SAVE_CONTENT_AREA_DATA, 
     CLEAR_CONTENT_AREA_DATA, 
     DELETE_PLAN, 
-    ADD_TO_PRINT_LIST } from './types';
+    ADD_TO_PRINT_LIST,
+    REMOVE_FROM_PRINT_LIST
+} from './types';
 
 const saveContentAreaData = (contentAreaData) => {
 
@@ -70,6 +72,20 @@ const addToPrintList = (id) => {
     }
 }
 
+const removeFromPrintList = (id) => {
+    return {
+        type: REMOVE_FROM_PRINT_LIST,
+        id
+    }
+}
 
 
-export { saveContentAreaData, saveDailyPlans, saveWeeklyPlans, clearDailyPlans, clearContentAreaData, deletePlan, addToPrintList };
+
+export { saveContentAreaData,
+    saveDailyPlans,
+    saveWeeklyPlans,
+    clearDailyPlans,
+    clearContentAreaData,
+    deletePlan,
+    addToPrintList,
+    removeFromPrintList };
