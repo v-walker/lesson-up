@@ -155,18 +155,12 @@ function CreatePlan() {
                     
                         
                         {savedWeekOf && 
-                        <> You previously selected and saved: &nbsp;Week of&nbsp;
-                            <Moment format="MM/DD/YYYY">
-                            {weekOf}
-                            </Moment>
-                            <br />
-                            Use the date picker below to select a different date if you need to change it.
-                            <br />
-                            <br />
+                        <> Let's pick up where you left off. If you need to change any values, remember to save your changes!
+                        <br /><br />
                         </>
                         }
                         <Form.Label>Week of</Form.Label> &nbsp;
-                        <Form.Control type="date" onChange={(e) => setWeekOf(e.target.value)}></Form.Control>
+                        <Form.Control type="date" value={weekOf} onChange={(e) => setWeekOf(e.target.value)}></Form.Control>
                     </Form.Group>
                     
                     <br />

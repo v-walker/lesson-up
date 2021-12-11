@@ -5,6 +5,7 @@ import { deletePlan } from '../actions/planActions';
 // imported library components
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
+import Form from 'react-bootstrap/Form';
 import Moment from 'react-moment';
 
 // icons
@@ -39,6 +40,15 @@ function tConvert (time) {
         <div className="container">
             <div className="row d-flex justify-content-center">
                 <div className="col-10 m-5">
+                    <h3>Search Plans By Week</h3>
+                        <Form>
+                            <Form.Group>
+                                <Form.Label>Select starting date for week</Form.Label>
+                                <Form.Control type="date" onChange></Form.Control>
+                            </Form.Group>
+                        </Form>
+
+
                     <h3>Your Saved Plans</h3>
                     <br />
                     
