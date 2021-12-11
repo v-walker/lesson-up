@@ -4,15 +4,10 @@ import { deletePlan } from '../actions/planActions';
 
 // local components
 import PlanCard from './PlanCard';
+import PrintSidePlanel from './PrintSidePlanel';
 
 // imported library components
-import Button from 'react-bootstrap/Button';
-import Card from 'react-bootstrap/Card';
 import Form from 'react-bootstrap/Form';
-import Moment from 'react-moment';
-
-// icons
-import { MdDeleteForever, MdLocalPrintshop } from 'react-icons/md'
 
 
 function tConvert(time) {
@@ -58,42 +53,55 @@ function ViewPlans() {
         <div className="container">
             <div className="row d-flex justify-content-center">
                 <div className="col-10 m-5">
-                    <h3>Search Plans By Week</h3>
-                        <Form className="mb-5">
-                            <Form.Group>
-                                <Form.Label>Select starting date for the week you would like to search for</Form.Label>
-                                <Form.Control value={searchDate} type="date" onChange={(e) => setSearchDate(e.target.value)}></Form.Control>
-                            </Form.Group>
-                        </Form>
+                    <div className="row">
 
-                        {searchDate && 
-                            <div className="mb-5">
-                                <h3>Plans Matching Your Search</h3>
-                                <br />
-                                
-                                <div className="row d-flex justify-content-center">
-                                    {searchedPlans.map(planObj => {
-                                        
-                                        return (
-                                            <PlanCard planObj={planObj} handleDelete={handleDelete}/>
-                                        )
-                                    })}
+                        {/* main content */}
+                        <div className="col-8">
+                            <h3>Search Plans By Week</h3>
+                            <Form className="mb-5">
+                                <Form.Group>
+                                    <Form.Label>Select starting date for the week you would like to search for</Form.Label>
+                                    <Form.Control value={searchDate} type="date" onChange={(e) => setSearchDate(e.target.value)}></Form.Control>
+                                </Form.Group>
+                            </Form>
+
+                            {searchDate && 
+                                <div className="mb-5">
+                                    <h3>Plans Matching Your Search</h3>
+                                    <br />
+                                    
+                                    <div className="row d-flex justify-content-center">
+                                        {searchedPlans.map(planObj => {
+                                            
+                                            return (
+                                                <PlanCard planObj={planObj} handleDelete={handleDelete}/>
+                                            )
+                                        })}
+                                    </div>
                                 </div>
-                            </div>
-                        }
+                            }
 
-                    {/* List of all saved plans... maybe limit the length of these to 10-15... */}
-                    <h3>Your Most Recently Saved Plans</h3>
-                    <br />
-                    
-                    <div className="row d-flex justify-content-center">
-                        {savedPlans.map(planObj => {
+                            {/* List of all saved plans... maybe limit the length of these to 10-15... */}
+                            <h3>Your Most Recently Saved Plans</h3>
+                            <br />
                             
-                            return (
-                                <PlanCard planObj={planObj} handleDelete={handleDelete}/>
-                            )
-                        })}
+                            <div className="row d-flex justify-content-center">
+                                {savedPlans.map(planObj => {
+                                    
+                                    return (
+                                        <PlanCard planObj={planObj} handleDelete={handleDelete}/>
+                                    )
+                                })}
+                            </div>
+                        </div>
+
+                        {/* side panel */}
+                        <div className="col-4">
+                            <PrintSidePlanel />
+                        </div>
                     </div>
+
+                    
                 </div>
             </div>
 
