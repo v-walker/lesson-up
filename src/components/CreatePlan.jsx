@@ -141,7 +141,7 @@ function CreatePlan() {
     
     return (
         <>
-            <h2 className="text-center">Let's Make a Plan!</h2>
+            <h2 className="text-center mt-5">Let's Make a Plan!</h2>
             <div className="row d-flex justify-content-center m-0">
                 <div className="col-12 col-md-10 col-xl-8">
                     <Form className="p-5 p-md-0 mt-0 mb-0 mt-md-5 mb-md-5" onSubmit={handleSaveWeeklyPlan}>
@@ -156,44 +156,51 @@ function CreatePlan() {
                             <br />
                             Use the date picker below to select a different date if you need to change it.
                             <br />
+                            <br />
                         </>
                         }
                         <Form.Label>Week of</Form.Label> &nbsp;
                         <Form.Control type="date" onChange={(e) => setWeekOf(e.target.value)}></Form.Control>
                     </Form.Group>
-
-                    <Form.Label>Select Grade Level</Form.Label>
-                    <Form.Select value={gradeLevel} defaultValue="Select a grade level" onChange={(e) => setGradeLevel(e.target.value)}>
-                        <option hidden>Select a grade level</option>
-                        <option>Grade K</option>
-                        <option>Grade 1</option>
-                        <option>Grade 2</option>
-                        <option>Grade 3</option>
-                        <option>Grade 4</option>
-                        <option>Grade 5</option>
-                        <option>Grade 6</option>
-                        <option>Grade 7</option>
-                        <option>Grade 8</option>
-                        <option>Grade 9</option>
-                        <option>Grade 10</option>
-                        <option>Grade 11</option>
-                        <option>Grade 12</option>
-                    </Form.Select>
-                
-                {gradeLevel &&
+                    
+                    <br />
                     <Form.Group>
-                        <Form.Label>Select Content Area</Form.Label>
-                        <Form.Select value={subject[0]} defaultValue="Select a content area" onChange={(e) => handleSubjectSelection(e)}>
-                            <option hidden>Select a content area</option>
-                            {contentAreas.map(contentObj => {
-                                return <option key={contentObj.id} id={contentObj.id}>{contentObj.subject}</option>
-                            })}
+                        <Form.Label>Select Grade Level</Form.Label>
+                        <Form.Select value={gradeLevel} defaultValue="Select a grade level" onChange={(e) => setGradeLevel(e.target.value)}>
+                            <option hidden>Select a grade level</option>
+                            <option>Grade K</option>
+                            <option>Grade 1</option>
+                            <option>Grade 2</option>
+                            <option>Grade 3</option>
+                            <option>Grade 4</option>
+                            <option>Grade 5</option>
+                            <option>Grade 6</option>
+                            <option>Grade 7</option>
+                            <option>Grade 8</option>
+                            <option>Grade 9</option>
+                            <option>Grade 10</option>
+                            <option>Grade 11</option>
+                            <option>Grade 12</option>
                         </Form.Select>
                     </Form.Group>
+                {gradeLevel &&
+                    <>
+                        <br />
+                        <Form.Group>
+                            <Form.Label>Select Content Area</Form.Label>
+                            <Form.Select value={subject[0]} defaultValue="Select a content area" onChange={(e) => handleSubjectSelection(e)}>
+                                <option hidden>Select a content area</option>
+                                {contentAreas.map(contentObj => {
+                                    return <option key={contentObj.id} id={contentObj.id}>{contentObj.subject}</option>
+                                })}
+                            </Form.Select>
+                        </Form.Group>
+                    </>
                 } {/* end of grade level and standards section */}
 
                 {subject &&
                     <>
+                        <br />
                         <Form.Group className="g-0">
                             <Form.Label>Select Standard(s) {subject && <span>for {gradeLevel} {subject[0]}</span>}</Form.Label>
                             
@@ -224,6 +231,12 @@ function CreatePlan() {
                                         return <option>{standardObj.statementNotation}: {description}</option>
                                     })}
                             </Form.Select>
+                            <br />
+                        </Form.Group>
+
+                        <Form.Group>
+                            <Form.Label>Content Vocabulary</Form.Label>
+                            <Form.Control type="text" placeholder="Input content vocabulary list here"></Form.Control>
                             <br />
                         </Form.Group>
                     

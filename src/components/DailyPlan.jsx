@@ -143,6 +143,8 @@ function DailyPlan({day, handleSaveDailyPlan}) {
                 <Form.Control type="text" placeholder="Enter daily learning target" value={learningTarget} onChange={(e) => setLearningTarget(e.target.value)} />
             </Form.Group>
 
+            <br />
+
             <Form.Group className="mb-3" controlId={`formBasicActivity_${day}`}>
                 <Form.Label>Activity/Activities:</Form.Label>
                 <br />
@@ -162,15 +164,28 @@ function DailyPlan({day, handleSaveDailyPlan}) {
                 <Form.Control type="text" placeholder="Enter acitivity/activities description" value={activityDescrip} onChange={(e) => setActivityDescrip(e.target.value)} />
             </Form.Group>
 
+            <br />
+
             <Form.Group>
                 <Form.Label>Hook:</Form.Label>
                 <Form.Control type="text" placeholder="Enter lesson hook" value={hook} onChange={(e) => setHook(e.target.value)} />
             </Form.Group>
 
+            <br />
+
             <Form.Group>
                 <Form.Label>Lesson:</Form.Label>
                 <Form.Control as="textarea" rows="5" placeholder="Enter lesson description/information" value={lesson} onChange={(e) => setLesson(e.target.value)} />
             </Form.Group>
+
+            <br />
+
+            <Form.Group>
+                <Form.Label>Closing:</Form.Label>
+                <Form.Control type="text" placeholder="Enter lesson wrap-up/closing here" value={lesson} onChange={(e) => setLesson(e.target.value)} />
+            </Form.Group>
+
+            <br />
 
             <Form.Group>
                 <Form.Label>Assessment/Graded Assignment:</Form.Label>
@@ -184,6 +199,8 @@ function DailyPlan({day, handleSaveDailyPlan}) {
                 <input type="checkbox" value="Observation" name="observation" checked={observation} onChange={(e) => addCheckedItem(observation, e.target.value, assessmentMethods, setAssessmentMethods, setObservation)}/> <span>Observation</span>
                 <Form.Control type="text" placeholder="Enter assessment/graded assignment description" value={assessmentDescription} onChange={(e) => setAssessmentDescription(e.target.value)} />
             </Form.Group>
+
+            <br />
 
             <Form.Group>
                 <Form.Label>Accommodations/Differentiation:</Form.Label>

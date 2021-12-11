@@ -53,30 +53,6 @@ function ViewPlans() {
                             )
                         })}
                     </div>
-
-                    
-                    
-
-                    {/* <ul>
-                        {savedPlans.map(planObj => {
-                            return (
-                                <li key={planObj.id} className="mb-3">
-                                    
-                                    {planObj.data.gradeLevel} {planObj.data.subject[0]} weekly plan for week of&nbsp; 
-                                    <Moment format="MM/DD/YYYY">
-                                        {planObj.data.weekOf} 
-                                    </Moment>
-                                    &nbsp;
-                                    <Button className="btn btn-primary">View details <MdLocalPrintshop /></Button>
-                                    &nbsp;
-                                    <Button className="btn btn-warning">Add to print list <MdLocalPrintshop /></Button>
-                                    &nbsp;
-                                    <Button className="btn btn-danger" onClick={() => handleDelete(planObj.id)}>Delete <MdDeleteForever/></Button>
-                                    &nbsp;
-                                </li>
-                            )
-                        })}
-                    </ul> */}
                 </div>
             </div>
 
