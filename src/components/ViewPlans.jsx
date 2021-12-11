@@ -2,6 +2,9 @@ import React, { useState, useEffect} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { deletePlan } from '../actions/planActions';
 
+// local components
+import PlanCard from './PlanCard';
+
 // imported library components
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
@@ -30,7 +33,8 @@ function ViewPlans() {
     const savedPlans = useSelector(state => state.planCRD.fullPlans);
 
     // local state variables
-    const [searchDate, setSearchDate] = useState("")
+    const [searchDate, setSearchDate] = useState("");
+    const [searchedPlans, setsearchedPlans] = useState([]);
 
     console.log(savedPlans);
 
@@ -74,23 +78,7 @@ function ViewPlans() {
                         {savedPlans.map(planObj => {
                             
                             return (
-                                <Card key={planObj.id} className="mb-3 pb-3 pb-md-0" style={{maxWidth: "800px"}}>
-                                    <div className="row">
-                                        <div className="col-12 col-md-6 col-lg-10 d-flex align-items-center">
-                                            <p className="mt-3 ms-3 me-3">
-                                                
-                                                {tConvert (planObj.data.time)} {planObj.data.gradeLevel} {planObj.data.subject[0]} plan for week of&nbsp;<Moment format="MM/DD/YYYY">{planObj.data.weekOf}</Moment>
-                                            </p>
-                                        </div>
-                                        <div className="col-12 col-md-6 col-lg-2">
-                                            <div className="row d-flex align-items-center justify-content-center justify-content-md-end">
-                                                <Button className="btn btn-primary w-75">View details <br /> <MdLocalPrintshop /></Button>
-                                                <Button className="btn btn-warning w-75">Add to print list<br /> <MdLocalPrintshop /></Button>
-                                                <Button className="btn btn-danger w-75" onClick={() => handleDelete(planObj.id)}>Delete forever <br /><MdDeleteForever/></Button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </Card>
+                                <PlanCard planObj={planObj} handleDelete={handleDelete}/>
                             )
                         })}
                     </div>
