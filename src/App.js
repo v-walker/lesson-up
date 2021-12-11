@@ -34,8 +34,6 @@ function App() {
     dispatch(loadStateData(stateID));
   }
   
-  console.log(switchStates);
-  
   return (
     <>
       <div className="row d-flex justify-content-center m-0">

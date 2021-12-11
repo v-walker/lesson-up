@@ -15,6 +15,11 @@ function IndividualPlanDay() {
                     <hr />
 
                     <div className="ms-2">
+                        <b>Activities:</b>
+                    </div>
+                    <hr />
+
+                    <div className="ms-2">
                         <p>
                             <b>Hook: </b>
                             <br />
