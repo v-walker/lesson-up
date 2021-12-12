@@ -23,11 +23,6 @@ header {
     position: relative;
 }
 
-/* nav {
-    position: absolute;
-    top: 20px
-} */
-
 .image-layer {
     background-image: url("./notebook.jpeg");
     background-position: center;
@@ -42,20 +37,31 @@ header {
 
 .title {
     font-family: 'Bitter', serif;
-    font-size: 3.5rem;
     font-weight: 600;
     color: #8C3926; /* burnt umber */
 }
 
 
-@media screen and (max-width: 425px) {
+@media screen and (min-width: 200px) {
     .title {
-        font-size: 2.5rem;
+        font-size: 2.3rem;
     }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (min-width: 767px) {
     .title {
         font-size: 2.8rem;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .title {
+        font-size: 3.5rem;
+    }
+}
+
+@media screen and (min-width: 1400px) {
+    .title {
+        font-size: 4rem;
     }
 }

@@ -1,0 +1,52 @@
+/* Color Theme Swatches in Hex */
+/* goldenrod: #F2D377 */
+/* yellow-orange: #F2AA52 */
+/* nectar: #D97941 */
+/* flame: #D95D30 */
+/* burnt umber: #8C3926 */
+
+/* Color Theme Swatches in RGBA */
+/* goldenrod: rgba(242, 211, 119, 1) */
+/* yellow-orange: rgba(242, 170, 82, 1) */
+/* nectar: rgba(217, 121, 65, 1) */
+/* flame: rgba(217, 93, 48, 1) */
+/* burnt umber: rgba(140, 57, 38, 1) */
+
+/* Color Theme Swatches in HSLA */
+/* goldenrod: hsla(44, 82, 70, 1) */
+/* yellow-orange: hsla(33, 86, 63, 1) */
+/* nectar: hsla(22, 66, 55, 1) */
+/* flame: hsla(15, 68, 51, 1) */
+/* burnt umber: hsla(11, 57, 34, 1) */
+
+nav {
+    font-family: 'Bitter', serif;
+}
+
+nav a {
+    text-decoration: none;
+    color: #8C3926;
+}
+
+nav a:hover {
+    color: #D95D30;
+}
+
+nav div a:hover {
+    border-bottom: 0.5px solid #F2D377;
+}
+
+.home {
+    font-weight: 600;
+    font-size: 1.5rem;
+}
+
+.navbar-toggler {
+    border: none;
+    outline: none;
+    box-shadow: none;
+}
+
+.navbar-toggler:focus {
+    box-shadow: none
+}
