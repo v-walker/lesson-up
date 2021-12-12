@@ -20,7 +20,7 @@ function PrintSidePlanel() {
     printList.sort(sortByTime);
     
     return (
-        <div className="ms-5">
+        <div className="ms-2 ms-lg-5 mb-5">
             <h4>Print List</h4>
 
             <ul className="mt-5 mb-5">

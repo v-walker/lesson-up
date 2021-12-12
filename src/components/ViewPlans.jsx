@@ -44,7 +44,7 @@ function ViewPlans() {
                     <div className="row">
 
                         {/* main content */}
-                        <div className="col-8">
+                        <div className="col-12 col-md-8 order-2 order-md-1">
                             <h3>Search Plans By Week</h3>
                             <Form className="mb-5">
                                 <Form.Group>
@@ -84,7 +84,7 @@ function ViewPlans() {
                         </div>
 
                         {/* side panel */}
-                        <div className="col-4">
+                        <div className="col-12 col-md-4 order-1 order-md-2">
                             <PrintSidePlanel />
                         </div>
                     </div>
