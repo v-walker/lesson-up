@@ -46,7 +46,7 @@ function ViewPlans() {
                         {/* main content */}
                         <div className="col-12 col-md-8 order-2 order-md-1">
                             <h3>Search Plans By Week</h3>
-                            <Form className="mb-5">
+                            <Form className="mb-5 mt-5">
                                 <Form.Group>
                                     <Form.Label>Select starting date for the week you would like to search for</Form.Label>
                                     <Form.Control value={searchDate} type="date" onChange={(e) => setSearchDate(e.target.value)}></Form.Control>

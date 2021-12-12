@@ -56,11 +56,11 @@ function PlanCard({planObj, handleDelete}) {
                 <div className="col-12 col-md-6 col-lg-4">
                     <div className="row d-flex align-items-center justify-content-center justify-content-md-end">
                         {!printList.find(obj => obj.id === planObj.id)
-                        ? <Button className="btn btn-warning w-75" onClick={() => dispatch(addToPrintList(planObj.id))}>Add to print list<br /> <MdLocalPrintshop /></Button>
-                        : <Button className="btn btn-warning w-75" onClick={() => dispatch(removeFromPrintList(planObj.id))}>Remove from print list<br /> <CgPlayListRemove /></Button>
+                        ? <Button className="btn btn-warning w-75" onClick={() => dispatch(addToPrintList(planObj.id))}>Add to print list<br /> <span><MdLocalPrintshop /></span></Button>
+                        : <Button className="btn btn-warning w-75" onClick={() => dispatch(removeFromPrintList(planObj.id))}>Remove from print list<br /> <span><CgPlayListRemove /></span></Button>
                         }
                         
-                        <Button className="btn btn-danger w-75" onClick={() => handleDelete(planObj.id)}>Delete forever <br /><MdDeleteForever/></Button>
+                        <Button className="btn btn-danger w-75" onClick={() => handleDelete(planObj.id)}>Delete forever <br /> <span><MdDeleteForever/></span></Button>
                     </div>
                 </div>
             </div>

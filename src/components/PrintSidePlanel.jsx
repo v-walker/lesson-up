@@ -11,7 +11,8 @@ import Moment from 'react-moment';
 import Button from 'react-bootstrap/Button';
 
 // icons
-import { CgPlayListRemove } from 'react-icons/cg'
+import { CgPlayListRemove } from 'react-icons/cg';
+import { RiLayout5Line } from 'react-icons/ri'
 
 function PrintSidePlanel() {
     const dispatch = useDispatch();
@@ -20,8 +21,8 @@ function PrintSidePlanel() {
     printList.sort(sortByTime);
     
     return (
-        <div className="ms-2 ms-lg-5 mb-5">
-            <h4>Print List</h4>
+        <div className="ms-2 ms-lg-5 mb-5 side-panel ps-md-3">
+            <h3>Print List</h3>
 
             <ul className="mt-5 mb-5">
                 {printList.map(planObj => {
@@ -31,9 +32,15 @@ function PrintSidePlanel() {
                 })}
             </ul>
 
-            <div className="text-end">
-                <Button className="btn btn-warning"><Link to="/print_plans">Go to Print View</Link></Button>
+            {printList.length > 0
+            ? <div className="text-end">
+                    <Button className="btn btn-warning"><Link to="/print_plans">View Print Layout<br /><span><RiLayout5Line/></span></Link></Button>
+                </div>
+            : <div className="intro">
+                Hmmm... there's nothing here yet! Search for your content area plans and select the ones you want to print. Once you add them, you'll see them here and a link to the print view.
             </div>
+            }
+            
 
         </div>
     )

@@ -22,6 +22,7 @@
 body {
     font-family: Helvetica, sans-serif;
     background-color: #FAFAFA;
+    font-color: black;
 }
 
 h2, h3, h4 {
@@ -43,22 +44,50 @@ button a {
 .btn-warning, .btn-warning a {
     background-color: #FAFAFA;
     outline: #D97941;
-    color: #D95D30
+    color: #D95D30;
+    font-family: 'Bitter', serif;
 }
 
-.btn-warning:hover, .btn-warning a:hover {
+.btn-warning:hover, .btn-warning a:hover, .btn-warning a:focus {
     background-color: #FFFFFF;
-    color: #da5323
+    color: #da5323;
+    box-shadow: none;
 }
 
 .btn-primary, .btn-primary a {
     background-color: #FAFAFA;
     color: #af462f;
     border-color: #F2AA52;
+    font-family: 'Bitter', serif;
 }
 
-.btn-primary:hover, .btn-primary a:hover {
+.btn-primary:hover, .btn-primary a:hover a:focus, .btn-primary:active:focus {
     background-color: #FFFFFF;
     color: #8d2e18;
     border-color: #F2AA52;
+    box-shadow: none;
 } 
+
+.nav-item .nav-link {
+    color: #8C3926;
+}
+
+button span {
+    font-size: 1.5em;
+}
+
+.side-panel {
+    border-left: 0.5px solid rgba(140, 57, 38, 0.3);
+}
+
+.card {
+    box-shadow: 1px 1px 5px 2px rgba(224, 223, 223, 0.5)
+}
+
+@media screen and (max-width: 767px) {
+    .side-panel {
+        border-left: none;
+    }
+}
+
+
