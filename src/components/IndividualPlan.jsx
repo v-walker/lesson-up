@@ -1,7 +1,14 @@
 import React from 'react';
 import IndividualPlanDay from './IndividualPlanDay';
+import { daysArray } from '../utils';
 
-function IndividualPlan() {
+function IndividualPlan({planObj}) {
+    // console.log(planObj);
+    const dailyPlans = planObj.data.dailyPlans
+
+    // console.log(dailyPlans);
+    // console.log(dailyPlans.Monday);
+    
     return (
         <div>
             
@@ -35,11 +42,11 @@ function IndividualPlan() {
                 <div className="row">
                     <div className="col-12 m-0 p-0">
                         <div style={{display: "flex", width: "100%"}}>
-                            <IndividualPlanDay />
-                            <IndividualPlanDay />
-                            <IndividualPlanDay />
-                            <IndividualPlanDay />
-                            <IndividualPlanDay />
+                            
+                            {daysArray.map(day => {
+                                return <IndividualPlanDay key={day} day={day} data={dailyPlans[day]} />
+                            })}
+                            
                         </div>
                     </div>
                 </div>

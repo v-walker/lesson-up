@@ -15,8 +15,10 @@ import { sortStandardsInOrder } from '../utils';
 
 import { saveContentAreaData, clearContentAreaData, saveDailyPlans, clearDailyPlans, saveWeeklyPlans } from '../actions/planActions';
 
+import { daysArray } from '../utils';
+
 function CreatePlan() {
-    const daysArray = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
+    // const daysArray = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
 
     // saved data from Redux
     const savedWeekOf = useSelector(state => state.planCRD.contentAreaData.weekOf);
@@ -68,7 +70,7 @@ function CreatePlan() {
         };
 
         tempArray.sort(sortStandardsInOrder);
-        // console.log(tempArray);
+        console.log(tempArray);
 
         setArrayOfStandards(tempArray);
     }, [standards])
