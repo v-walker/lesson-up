@@ -1,6 +1,8 @@
 import React from 'react';
 import IndividualPlanDay from './IndividualPlanDay';
-import { daysArray } from '../utils';
+import { daysArray, tConvert } from '../utils';
+
+import Moment from 'react-moment';
 
 function IndividualPlan({planObj}) {
     // console.log(planObj);
@@ -16,7 +18,7 @@ function IndividualPlan({planObj}) {
             <div className="container m-5" style={{border: "0.5px solid black"}}>
                 <div className="row">
                     <div className="text-center pt-2 pb-2" width="100%" style={{backgroundColor: "yellow"}}>
-                        <b>Time, Grade and Subject Area</b>
+                        <b>{tConvert(planObj.data.time)} {planObj.data.gradeLevel} {planObj.data.subject[0]}</b>
                     </div>
                     <hr className="m-0" />
                 </div>
@@ -24,18 +26,27 @@ function IndividualPlan({planObj}) {
                 
                 <div className="row" style={{backgroundColor: "white"}}>
                     <div className="col-12">
-                        <b>Week of:</b>
+                        <b>Week of:</b> <Moment format="MM/DD/YYYY">{planObj.data.weekOf}</Moment>
                     </div>
                     <hr className="m-0"/>
                     <div className="col-12">
                         <b>Standard(s):</b>
                         <br />
                         {/* standards here */}
+                        <ul>
+                            <li key={1}>{planObj.data.selectedStandard1}</li>
+                            {planObj.data.selectedStandard2 && <li key={2}>{planObj.data.selectedStandard2}</li>}
+                            {planObj.data.selectedStandard3 && <li key={3}>{planObj.data.selectedStandard3}</li>}
+                        </ul>
                     </div>
-                    <hr className="m-0"/>
-                    <div className="col-12">
-                        <b>Content Vocabulary:</b> &nbsp; {/* content vocab here */}
-                    </div>
+                    {planObj.data.contentVocab && 
+                    <>
+                        <hr className="m-0"/>
+                        <div className="col-12">
+                            <b>Content Vocabulary:</b> &nbsp; {planObj.data.contentVocab}
+                        </div>
+                    </>}
+                    
                     <hr className="m-0" />
                 </div>
 

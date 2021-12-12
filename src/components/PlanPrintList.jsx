@@ -14,8 +14,6 @@ function PlanPrintList() {
             {printList.map(planObj => {
                 return <IndividualPlan key={planObj.id} planObj={planObj} />
             })}
-
-            {/* <IndividualPlan /> */}
         </div>
     )
 }
