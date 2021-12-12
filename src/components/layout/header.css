@@ -33,7 +33,7 @@ header {
     background-position: center;
     background-size: cover;
     width: 100vw;
-    height: 60vh;
+    height: 50vh;
     z-index: 1;
     display: flex;
     justify-content: center;
@@ -41,11 +41,21 @@ header {
 }
 
 .title {
-    color: purple;
+    font-family: 'Bitter', serif;
+    font-size: 3.5rem;
+    font-weight: 600;
+    color: #8C3926; /* burnt umber */
 }
 
-/* .text-layer {
-    position: absolute;
-    height: 60vh;
-    z-index: 10;
-} */
+
+@media screen and (max-width: 425px) {
+    .title {
+        font-size: 2.5rem;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .title {
+        font-size: 2.8rem;
+    }
+}
