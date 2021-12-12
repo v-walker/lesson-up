@@ -21,6 +21,7 @@
 
 body {
     font-family: Helvetica, sans-serif;
+    background-color: #FAFAFA;
 }
 
 h2, h3, h4 {
@@ -40,7 +41,7 @@ button a {
 }
 
 .btn-warning, .btn-warning a {
-    background-color: #FFFFFF;
+    background-color: #FAFAFA;
     outline: #D97941;
     color: #D95D30
 }
