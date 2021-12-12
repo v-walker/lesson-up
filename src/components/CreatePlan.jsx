@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
@@ -67,13 +68,13 @@ function CreatePlan() {
         };
 
         tempArray.sort(sortStandardsInOrder);
-        console.log(tempArray);
+        // console.log(tempArray);
 
         setArrayOfStandards(tempArray);
     }, [standards])
 
     useEffect(() => {
-        console.log(arrayOfStandards);
+        // console.log(arrayOfStandards);
     }, [arrayOfStandards])
 
     const handleSubjectSelection = async (e) => {
@@ -164,7 +165,7 @@ function CreatePlan() {
                     <br />
                     <Form.Group>
                         <Form.Label>Select Grade Level</Form.Label>
-                        <Form.Select value={gradeLevel} defaultValue="Select a grade level" onChange={(e) => setGradeLevel(e.target.value)}>
+                        <Form.Select value={gradeLevel} onChange={(e) => setGradeLevel(e.target.value)}>
                             <option hidden>Select a grade level</option>
                             <option>Grade K</option>
                             <option>Grade 1</option>
@@ -186,7 +187,7 @@ function CreatePlan() {
                         <br />
                         <Form.Group>
                             <Form.Label>Select Content Area</Form.Label>
-                            <Form.Select value={subject[0]} defaultValue="Select a content area" onChange={(e) => handleSubjectSelection(e)}>
+                            <Form.Select value={subject[0]} onChange={(e) => handleSubjectSelection(e)}>
                                 <option hidden>Select a content area</option>
                                 {contentAreas.map(contentObj => {
                                     return <option key={contentObj.id} id={contentObj.id}>{contentObj.subject}</option>
@@ -202,31 +203,31 @@ function CreatePlan() {
                         <Form.Group className="g-0">
                             <Form.Label>Select Standard(s) {subject && <span>for {gradeLevel} {subject[0]}</span>}</Form.Label>
                             
-                            <Form.Select className="" value={selectedStandard1} defaultValue="" onChange={(e) => setSelectedStandard1(e.target.value)}>
+                            <Form.Select className="" value={selectedStandard1} onChange={(e) => setSelectedStandard1(e.target.value)}>
                                 <option hidden>Standard Selection 1</option>
-                                {arrayOfStandards.map(standardObj => {
+                                {arrayOfStandards.map((standardObj, index) => {
                                         let description = standardObj.description.replace(/<\/?[^>]+>/gi, '')
                                         // let optionValue = standardObj.statementNotation + " " + description;
 
-                                        return <option>{standardObj.statementNotation} {description}</option>
+                                        return <option key={index}>{standardObj.statementNotation} {description}</option>
                                     })}
                             </Form.Select>
                             <br />
-                            <Form.Select className="" value={selectedStandard2} defaultValue="" onChange={(e) => setSelectedStandard2(e.target.value)}>
+                            <Form.Select className="" value={selectedStandard2} onChange={(e) => setSelectedStandard2(e.target.value)}>
                                 <option hidden>Standard Selection 2 (optional)</option>
-                                {arrayOfStandards.map(standardObj => {
+                                {arrayOfStandards.map((standardObj, index) => {
                                         let description = standardObj.description.replace(/<\/?[^>]+>/gi, '')
 
-                                        return <option>{standardObj.statementNotation}: {description}</option>
+                                        return <option key={index}>{standardObj.statementNotation}: {description}</option>
                                     })}
                             </Form.Select>
                             <br />
-                            <Form.Select className="" value={selectedStandard3} defaultValue="Standard Selection 3" onChange={(e) => setSelectedStandard3(e.target.value)}>
+                            <Form.Select className="" value={selectedStandard3} onChange={(e) => setSelectedStandard3(e.target.value)}>
                                 <option hidden>Standard Selection 3 (optional)</option>
-                                {arrayOfStandards.map(standardObj => {
+                                {arrayOfStandards.map((standardObj, index) => {
                                         let description = standardObj.description.replace(/<\/?[^>]+>/gi, '')
 
-                                        return <option>{standardObj.statementNotation}: {description}</option>
+                                        return <option key={index}>{standardObj.statementNotation}: {description}</option>
                                     })}
                             </Form.Select>
                             <br />
@@ -253,9 +254,9 @@ function CreatePlan() {
                 {selectedStandard1 &&
                     <>  
                         <Tabs defaultActiveKey="Monday" id="day-tabs" className="mb-3">
-                            {daysArray.map(day => {
+                            {daysArray.map((day, index) => {
                                 return (
-                                    <Tab eventKey={day} title={day}>
+                                    <Tab key={index} eventKey={day} title={day}>
                                         <DailyPlan day={day} handleSaveDailyPlan={(dailyPlanData) => handleSaveDailyPlan(dailyPlanData, day)} />
                                     </Tab>
                                 )

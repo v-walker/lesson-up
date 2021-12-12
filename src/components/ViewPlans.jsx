@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { deletePlan } from '../actions/planActions';
@@ -61,7 +62,7 @@ function ViewPlans() {
                                         {searchedPlans.map(planObj => {
                                             
                                             return (
-                                                <PlanCard planObj={planObj} handleDelete={handleDelete}/>
+                                                <PlanCard key={planObj.id} planObj={planObj} handleDelete={handleDelete}/>
                                             )
                                         })}
                                     </div>
@@ -76,7 +77,7 @@ function ViewPlans() {
                                 {savedPlans.map(planObj => {
                                     
                                     return (
-                                        <PlanCard planObj={planObj} handleDelete={handleDelete}/>
+                                        <PlanCard key={planObj.id} planObj={planObj} handleDelete={handleDelete}/>
                                     )
                                 })}
                             </div>

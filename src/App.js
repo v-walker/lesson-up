@@ -61,7 +61,7 @@ function App() {
           <br />
           <Form>
           <Form.Label>Select a state</Form.Label>
-            <Form.Select value={chosenState} defaultValue="Select your state" onChange={(e) => handleStateSelection(e) }>
+            <Form.Select value={chosenState} onChange={(e) => handleStateSelection(e) }>
               <option hidden>Select your state</option>
               {stateData.map(stateObj => {
                 return <option key={stateObj.id} id={stateObj.id}>{stateObj.title}</option>

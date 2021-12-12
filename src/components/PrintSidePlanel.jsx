@@ -26,7 +26,7 @@ function PrintSidePlanel() {
             <ul className="mt-5 mb-5">
                 {printList.map(planObj => {
                     return (
-                        <li> <CgPlayListRemove style={{color: "red"}} onClick={() => dispatch(removeFromPrintList(planObj.id))} /> {tConvert (planObj.data.time)} {planObj.data.gradeLevel} {planObj.data.subject[0]} plan for week of&nbsp;<Moment format="MM/DD/YYYY">{planObj.data.weekOf}</Moment></li>
+                        <li key={planObj.id}> <CgPlayListRemove style={{color: "red"}} onClick={() => dispatch(removeFromPrintList(planObj.id))} /> {tConvert (planObj.data.time)} {planObj.data.gradeLevel} {planObj.data.subject[0]} plan for week of&nbsp;<Moment format="MM/DD/YYYY">{planObj.data.weekOf}</Moment></li>
                     )
                 })}
             </ul>
