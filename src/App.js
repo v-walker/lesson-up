@@ -39,9 +39,13 @@ function App() {
       <div className="row d-flex justify-content-center mx-0 mt-5">
         <div className="col-12 col-md-10 col-xl-8 intro">
           <h2>Welcome to Lesson Up</h2>
+          <hr />
 
           Hello and welcome. We're so glad you're here. <br />
-          <b>Lesson Up</b> allows public school teachers to create weekly lesson plans for each content area they teach. [add more explanation and directions for use here]
+          <b>Lesson Up</b> allows public school teachers to create weekly lesson plans for each content area they teach.
+          <br />
+          <br />
+          If you are new to our site, select the state in which you reside to beginning using our lesson planner. Otherwise, click "Continue Planning" below to continue where you left off. If you need to plan for a different state or are curious about other states' standards, you can select a different state below.
           <br />
           <br />
           {(chosenState && !switchStates)?
@@ -58,8 +62,8 @@ function App() {
           : 
           // user is new to the site and has not chosen a state yet OR has chosen to pick a different state ==> show this
           <>
-          Let's get started! Select your state to begin planning.
-          <br />
+          {/* Let's get started! Select your state to begin planning.
+          <br /> */}
           <br />
           <Form>
           <Form.Label>Select a state</Form.Label>

@@ -33,3 +33,19 @@ h2, h3, h4 {
     letter-spacing: 0.05em;
     line-height: 1.8em;
 }
+
+button a {
+    text-decoration: none;
+
+}
+
+.btn-warning, .btn-warning a {
+    background-color: #FFFFFF;
+    outline: #D97941;
+    color: #D95D30
+}
+
+.btn-warning:hover, .btn-warning a:hover {
+    background-color: #FFFFFF;
+    color: #da5323
+}
