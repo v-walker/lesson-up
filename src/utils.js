@@ -9,4 +9,14 @@ function tConvert(time) {
     return time.join (''); // return adjusted time or original string
     }
 
-export { tConvert };
+const sortByTime = (a,b) => {
+    if ( a.data.time < b.data.time ){
+        return -1;
+    }
+    if ( a.data.time > b.data.time ){
+        return 1;
+    }
+    return 0;
+}
+
+export { tConvert, sortByTime };

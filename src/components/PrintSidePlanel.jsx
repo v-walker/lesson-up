@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 // local components
-import { tConvert } from '../utils';
+import { tConvert, sortByTime } from '../utils';
 import { removeFromPrintList } from '../actions/planActions';
 
 // library components
@@ -17,7 +17,7 @@ function PrintSidePlanel() {
     const dispatch = useDispatch();
     
     const printList = useSelector(state => state.planCRD.printList);
-    console.log("list", printList);
+    printList.sort(sortByTime);
     
     return (
         <div className="ms-5">
