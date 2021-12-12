@@ -22,7 +22,6 @@ function PlanCard({planObj, handleDelete}) {
 
     // data from Redux
     const printList = useSelector(state => state.planCRD.printList)
-    console.log(printList);
 
     return (
         <Card key={planObj.id} className="mb-3 pb-3 pb-md-0" style={{maxWidth: "800px"}}>
