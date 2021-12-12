@@ -156,9 +156,9 @@ function CreatePlan() {
                     
                         
                         {savedWeekOf && 
-                        <> Let's pick up where you left off. If you need to change any values, remember to save your changes!
+                        <div className="intro"> Let's pick up where you left off. If you need to change any values, remember to save your changes!
                         <br /><br />
-                        </>
+                        </div>
                         }
                         <Form.Label>Week of</Form.Label> &nbsp;
                         <Form.Control type="date" value={weekOf} onChange={(e) => setWeekOf(e.target.value)}></Form.Control>

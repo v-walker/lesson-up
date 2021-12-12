@@ -50,3 +50,15 @@ button a {
     background-color: #FFFFFF;
     color: #da5323
 }
+
+.btn-primary, .btn-primary a {
+    background-color: #FAFAFA;
+    color: #af462f;
+    border-color: #F2AA52;
+}
+
+.btn-primary:hover, .btn-primary a:hover {
+    background-color: #FFFFFF;
+    color: #8d2e18;
+    border-color: #F2AA52;
+} 
