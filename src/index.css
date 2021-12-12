@@ -22,7 +22,7 @@
 body {
     font-family: Helvetica, sans-serif;
     background-color: #FAFAFA;
-    font-color: black;
+    color: black;
 }
 
 h2, h3, h4 {
@@ -42,7 +42,7 @@ button a {
 }
 
 .btn-warning, .btn-warning a {
-    background-color: #FAFAFA;
+    background-color: #FEFEFE;
     outline: #D97941;
     color: #D95D30;
     font-family: 'Bitter', serif;
@@ -55,7 +55,7 @@ button a {
 }
 
 .btn-primary, .btn-primary a {
-    background-color: #FAFAFA;
+    background-color: #FEFEFE;
     color: #af462f;
     border-color: #F2AA52;
     font-family: 'Bitter', serif;

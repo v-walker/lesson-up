@@ -21,7 +21,8 @@
 
 nav {
     font-family: 'Bitter', serif;
-    border-bottom: 0.5px solid rgba(140, 57, 38, 0.3)
+    border-bottom: 0.5px solid rgba(140, 57, 38, 0.3);
+    background-color: #FAFAFA;
 }
 
 nav a {

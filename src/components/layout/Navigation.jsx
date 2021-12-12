@@ -12,7 +12,7 @@ function Navigation() {
     return (
         <>
         
-        <Navbar sticky="top" bg="light" expand="md">
+        <Navbar sticky="top" expand="md">
             {/* <Container className="p-0"> */}
                 <Link to="/" className="ps-3 home"><FaClipboardList/>Lesson Up</Link>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
