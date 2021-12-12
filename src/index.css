@@ -19,3 +19,17 @@
 /* flame: hsla(15, 68, 51, 1) */
 /* burnt umber: hsla(11, 57, 34, 1) */
 
+body {
+    font-family: Helvetica, sans-serif;
+}
+
+h2, h3, h4 {
+    font-family: 'Bitter', serif;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+}
+
+.intro {
+    letter-spacing: 0.05em;
+    line-height: 1.8em;
+}

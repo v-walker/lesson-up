@@ -36,8 +36,10 @@ function App() {
   
   return (
     <>
-      <div className="row d-flex justify-content-center m-0">
-        <div className="col-12 col-md-10 col-xl-8">
+      <div className="row d-flex justify-content-center mx-0 mt-5">
+        <div className="col-12 col-md-10 col-xl-8 intro">
+          <h2>Welcome to Lesson Up</h2>
+
           Hello and welcome. We're so glad you're here. <br />
           <b>Lesson Up</b> allows public school teachers to create weekly lesson plans for each content area they teach. [add more explanation and directions for use here]
           <br />
