@@ -3,12 +3,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 import Moment from 'react-moment';
 
+// bootstrap library components
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 
 import DailyPlan from './DailyPlan';
+import { sortStandardsInOrder } from '../utils';
 
 import { saveContentAreaData, clearContentAreaData, saveDailyPlans, clearDailyPlans, saveWeeklyPlans } from '../actions/planActions';
 
@@ -60,25 +62,19 @@ function CreatePlan() {
     useEffect(() => {
         // console.log(standards);
         let tempArray = [];
-        for (let standard in standards) {
-            tempArray.push(standards[standard])
+        for (let standardKey in standards) {
+            tempArray.push(standards[standardKey])
         };
-        
-        // need to manipulate temp array so that items are in order by "statementNotation"
+
+        tempArray.sort(sortStandardsInOrder);
+        console.log(tempArray);
 
         setArrayOfStandards(tempArray);
     }, [standards])
 
-    // useEffect(() => {
-    //     console.log("plans", dailyPlans);
-    // }, [dailyPlans])
-    
-    // console.log("standards", arrayOfStandards);
-
-    // useEffect(() => {
-    //     console.log("vocab", contentVocab);
-    // }, [contentVocab])
-
+    useEffect(() => {
+        console.log(arrayOfStandards);
+    }, [arrayOfStandards])
 
     const handleSubjectSelection = async (e) => {
         let id = e.target.children[e.target.selectedIndex].id;

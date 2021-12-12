@@ -19,4 +19,26 @@ const sortByTime = (a,b) => {
     return 0;
 }
 
-export { tConvert, sortByTime };
+const sortStandardsInOrder = (a, b) => {
+    if (a.statementNotation) {
+        if (a.statementNotation < b.statementNotation){
+            return -1;
+        }
+        if (a.statementNotation > b.statementNotation) {
+            return 1;
+        }
+        return 0;
+    } else if (a.listId) {
+        if (a.listId < b.listId){
+            return -1;
+        }
+        if (a.listId > b.listId) {
+            return 1;
+        }
+        return 0;
+    } 
+    return 0;
+    
+    }
+
+export { tConvert, sortByTime, sortStandardsInOrder };
