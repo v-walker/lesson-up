@@ -14,10 +14,10 @@ function IndividualPlan({planObj}) {
     return (
         <div>
             
-            <div style={{display: "flex", justifyContent: "center", fontSize: "0.8rem"}}>
+            <div className="toPrint" style={{display: "flex", justifyContent: "center", fontSize: "0.8rem"}}>
             <div className="container m-5 detailed-plan-card">
                 <div className="row">
-                    <div className="text-center pt-2 pb-2 z-1" width="100%" style={{backgroundColor: "yellow"}}>
+                    <div className="text-center pt-2 pb-2 z-1" width="100%" style={{backgroundColor: "#F2AA52"}}>
                         <b>{tConvert(planObj.data.time)} {planObj.data.gradeLevel} {planObj.data.subject[0]}</b>
                     </div>
                     <hr className="m-0" />

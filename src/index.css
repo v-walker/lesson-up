@@ -156,4 +156,22 @@ select, .form-select {
     }
 }
 
+@media print {
+    
+    body {
+        background-color: #FFFFFF;
+    }
+    
+    header, nav, footer, .navbar {
+        display: none;
+    }
+
+    .day-print {
+        border-bottom: 0.5px solid rgb(207, 206, 206)
+    }
+
+    .toPrint {
+        width: 100%
+    }
+}
 

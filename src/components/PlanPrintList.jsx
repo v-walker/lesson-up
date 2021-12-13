@@ -13,15 +13,15 @@ function PlanPrintList() {
     printList.sort(sortByTime);
     
     return (
-        <div>
+        <div className="m-0">
 
             {printList.length > 0
             ?
-            <>
+            <div className="m-0">
                 {printList.map(planObj => {
                 return <IndividualPlan key={planObj.id} planObj={planObj} />
             })}
-            </>
+            </div>
             :
             <>
                 <div className="container mt-5">

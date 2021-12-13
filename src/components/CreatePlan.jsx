@@ -1,6 +1,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+
 import axios from 'axios';
 import Moment from 'react-moment';
 
@@ -151,12 +153,29 @@ function CreatePlan() {
             <h2 className="text-center mt-5">Let's Make a Plan!</h2>
             <div className="row d-flex justify-content-center m-0">
                 <div className="col-12 col-md-10 col-xl-8">
+
+                    <p className="mt-5 intro oops">
+                        Feel free to include as much or as little information in your plans as you wish. Minimally, you should provide the date corresponding to the Monday of the week you are planning for, a grade level, a content area, a standard, and a time of day your lesson begins. We'll handle the rest.
+                        <br />
+                        <br />
+                        Remember to save as you go! If you don't finish the current plan you are working on, you can save by day (look at the bottom left corner of your screen at the end of the form for that day). We'll fetch the information you saved for the next time you come back. 
+                        
+                        <br />
+                        <br />
+                        You can keep editing this plan up until you click "Submit Full Weekly Plan". If you do not see the button to sumbit the full plan (at the very bottom of the full form), make sure that you have clicked "Save [Day]" for each day of the week.
+                        <br />
+                        <br />
+                        If you are here by mistake or would like to view plans you have made previously and/or select plans to print, navigate to <Link to="/view_plans">View Plans</Link>.
+
+                        <hr />
+                    </p>
+
                     <Form className="p-5 p-md-0 mt-0 mb-0 mt-md-5 mb-md-5" onSubmit={handleSaveWeeklyPlan}>
                     <Form.Group>
                     
                         
-                        {savedWeekOf && 
-                        <div className="intro"> Let's pick up where you left off. If you need to change any values, remember to save your changes!
+                        {savedWeekOf &&
+                        <div className="intro">It looks like you started working on a plan the last time you were here. Let's pick up where you left off. If you need to change any values, remember to save your changes!
                         <br /><br />
                         </div>
                         }

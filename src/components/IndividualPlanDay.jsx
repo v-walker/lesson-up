@@ -10,26 +10,21 @@ function IndividualPlanDay({day, data}) {
         <div className="m-0 p-0 plan-day">
             <div className="row">
                 <div className="">
-                    <div className="text-center" style={{backgroundColor: "yellow"}}>
+                    <div className="text-center day-print" style={{backgroundColor: "#F2AA52"}}>
                         <b>{day}</b>
                         <hr className="m-0" />
                     </div>
 
-                    {data.activities && 
-                        <>
-                        
-                        </>}
-
                     {data.noSchool === true
                     ? <>
-                        <div className="ms-2 me-2">
+                        <div className="ms-2 me-2 mt-2">
                             <b>No School</b>
                         </div>
                     </>
                     : <>
                         {data.learningTarget && 
                         <>
-                            <div className="ms-2 me-2">
+                            <div className="ms-2 me-2 mt-2">
                                 <b>Learning Target:</b> {data.learningTarget}
                             </div>
                             <hr />

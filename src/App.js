@@ -37,15 +37,15 @@ function App() {
   return (
     <>
       <div className="row d-flex justify-content-center mx-4 mx-md-0 mt-5 mb-5">
-        <div className="col-12 col-md-10 col-xl-8 intro">
+        <div className="col-12 col-md-10 col-xl-8 intro oops">
           <h2>Welcome to Lesson Up</h2>
           <hr />
 
           Hello and welcome. We're so glad you're here. <br />
-          <b>Lesson Up</b> allows public school teachers to create weekly lesson plans for each content area they teach.
+          <b>Lesson Up</b> allows public school teachers to create weekly lesson plans for each content area they teach. You don't have to plan from a blank slate. Fill in a few blanks, and we'll format the information for you in lesson plan layout you can print. You can save plans to view and print later, and you can search your saved plans.
           <br />
           <br />
-          If you are new to our site, select the state in which you reside to beginning using our lesson planner. Otherwise, click "Continue Planning" below to continue where you left off. If you need to plan for a different state or are curious about other states' standards, you can select a different state below.
+          If you are new to our site, select the state in which you reside to beginning using our lesson planner. Otherwise, click <Link to="/create">Continue Planning</Link> below to continue where you left off. If you need to plan for a different state or are curious about the standards in other states, you can select a different state below.
           <br />
           <br />
           {(chosenState && !switchStates)?
