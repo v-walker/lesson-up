@@ -135,9 +135,15 @@ select, .form-select {
 }
 
 
-/* @media screen and (max-width: 476) {
-    
-} */
+.oops a {
+    text-decoration: none;
+    color: #8C3926;
+    font-family: 'Bitter', serif;
+}
+
+.oops a:hover {
+    color: #D95D30;
+}
 
 @media screen and (max-width: 767px) {
     .side-panel {

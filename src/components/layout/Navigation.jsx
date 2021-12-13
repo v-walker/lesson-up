@@ -21,7 +21,7 @@ function Navigation() {
                         <Link key={1} to="/" className="ms-3">Home</Link>
                         <Link key={2} to="/create" className="ms-3 ">Create Plan</Link>
                         <Link key={3} to="/view_plans" className="ms-3 ">View Plans</Link>
-                        <Link key={4} to="/about" className="ms-3 ">About</Link>
+                        {/* <Link key={4} to="/about" className="ms-3 ">About</Link> */}
                     
                     </Nav>
                 </Navbar.Collapse>
