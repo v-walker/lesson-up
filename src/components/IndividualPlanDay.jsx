@@ -22,14 +22,14 @@ function IndividualPlanDay({day, data}) {
 
                     {data.noSchool === true
                     ? <>
-                        <div className="ms-2">
+                        <div className="ms-2 me-2">
                             <b>No School</b>
                         </div>
                     </>
                     : <>
                         {data.learningTarget && 
                         <>
-                            <div className="ms-2">
+                            <div className="ms-2 me-2">
                                 <b>Learning Target:</b> {data.learningTarget}
                             </div>
                             <hr />
@@ -37,7 +37,7 @@ function IndividualPlanDay({day, data}) {
                         
                         {data.activities.length !== 0 && 
                         <>
-                            <div className="ms-2">
+                            <div className="ms-2 me-2">
                             <b>Activities:</b>
                             <ul>
                                 {data.activities.map((activity, index) => {
@@ -55,7 +55,7 @@ function IndividualPlanDay({day, data}) {
                         
                         {(data.hook || data.lesson || data.closing) &&
                         <>
-                            <div className="ms-2">
+                            <div className="ms-2 me-2">
                             {data.hook && 
                             <>
                                 <p>
@@ -87,7 +87,7 @@ function IndividualPlanDay({day, data}) {
 
                         {data.assessmentMethods.length !== 0 &&
                         <>
-                            <div className="ms-2">
+                            <div className="ms-2 me-2">
                                 <b>Assessment Method(s)/Graded Assignment(s):</b> 
                                 <ul>
                                     {data.assessmentMethods.map((method, index) => {
@@ -101,7 +101,7 @@ function IndividualPlanDay({day, data}) {
 
                         {data.accommodations.length !== 0 && 
                         <>
-                            <div className="ms-2">
+                            <div className="ms-2 me-2">
                                 <b>Accommodations:</b> 
                                 <ul>
                                     {data.accommodations.map((accommodation, index) => {
