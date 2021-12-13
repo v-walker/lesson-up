@@ -36,7 +36,7 @@ function App() {
   
   return (
     <>
-      <div className="row d-flex justify-content-center mx-4 mx-md-0 mt-5 mb-5">
+      <div className="row d-flex justify-content-center mx-4 mx-md-0 mt-5 mb-5 gx-0">
         <div className="col-12 col-md-10 col-xl-8 intro oops">
           <h2>Welcome to Lesson Up</h2>
           <hr />
@@ -53,7 +53,7 @@ function App() {
           <>
             You have chosen to plan for  <b><i>{savedState}</i></b>.
             <br /><br />
-            <div className="d-flex justify-content-center">
+            <div className="d-flex justify-content-center m-0 p-0 g-0">
               <Button className="btn btn-warning"><Link to="/create">Continue Planning</Link></Button>
               <Button className="ms-2 btn btn-warning" onClick={() => setSwitchStates(!switchStates)}>Plan for a different state</Button>
             </div>
