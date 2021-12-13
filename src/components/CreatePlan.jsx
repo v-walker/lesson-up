@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import axios from 'axios';
-import Moment from 'react-moment';
+// import Moment from 'react-moment';
 
 // bootstrap library components
 import Form from 'react-bootstrap/Form';
@@ -20,7 +20,6 @@ import { saveContentAreaData, clearContentAreaData, saveDailyPlans, clearDailyPl
 import { daysArray } from '../utils';
 
 function CreatePlan() {
-    // const daysArray = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
 
     // saved data from Redux
     const savedWeekOf = useSelector(state => state.planCRD.contentAreaData.weekOf);
@@ -140,7 +139,7 @@ function CreatePlan() {
 
     const handleSaveWeeklyPlan = (e) => {
         e.preventDefault();
-        let weekOfFormatted = <Moment format="MM/DD/YYYY">{weekOf}</Moment>
+        // let weekOfFormatted = <Moment format="MM/DD/YYYY">{weekOf}</Moment>
 
         // add all of the week's daily plans to global state (set up action and case in reducer for this)
         dispatch(saveWeeklyPlans(weekOf, gradeLevel, subject, selectedStandard1, selectedStandard2, selectedStandard3, contentVocab, time, dailyPlans));
