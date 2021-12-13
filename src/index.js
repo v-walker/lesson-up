@@ -13,7 +13,7 @@ import BaseLayout from './components/layout/BaseLayout';
 import CreatePlan from './components/CreatePlan';
 import ViewPlans from './components/ViewPlans';
 import PlanPrintList from './components/PlanPrintList';
-import About from './components/About'
+// import About from './components/About'
 
 const saveToLocalStorage = (reduxGlobalState) => {
   // serialization = converting js object to a string

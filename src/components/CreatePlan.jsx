@@ -72,9 +72,28 @@ function CreatePlan() {
         };
 
         tempArray.sort(sortStandardsInOrder);
-        console.log(tempArray);
+        // console.log(tempArray);
 
-        setArrayOfStandards(tempArray);
+        let temp2 =[]
+
+        for (let standard of tempArray) {
+            if (standard.statementLabel) {
+                // console.log(standard);
+                if (standard.statementLabel === 'Standard') {
+                    temp2.push(standard)
+                } else if (standard.statementLabel === 'Element') {
+                    temp2.push(standard)
+                } else if (standard.statementLabel === 'Component') {
+                    temp2.push(standard)
+                }
+            } else {
+                temp2.push(standard)
+            }
+        }
+
+        // console.log(temp2);
+
+        setArrayOfStandards(temp2);
     }, [standards])
 
     useEffect(() => {
@@ -154,7 +173,7 @@ function CreatePlan() {
             <div className="row d-flex justify-content-center m-0">
                 <div className="col-12 col-md-10 col-xl-8">
 
-                    <p className="mt-5 intro oops">
+                    <div className="mt-5 intro oops">
                         Feel free to include as much or as little information in your plans as you wish. Minimally, you should provide the date corresponding to the Monday of the week you are planning for, a grade level, a content area, a standard, and a time of day your lesson begins. We'll handle the rest.
                         <br />
                         <br />
@@ -168,7 +187,7 @@ function CreatePlan() {
                         If you are here by mistake or would like to view plans you have made previously and/or select plans to print, navigate to <Link to="/view_plans">View Plans</Link>.
 
                         <hr />
-                    </p>
+                    </div>
 
                     <Form className="p-5 p-md-0 mt-0 mb-0 mt-md-5 mb-md-5" onSubmit={handleSaveWeeklyPlan}>
                     <Form.Group>

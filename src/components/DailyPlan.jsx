@@ -8,6 +8,8 @@ import Button from 'react-bootstrap/Button';
 function DailyPlan({day, handleSaveDailyPlan}) {
     
     // saved values from redux global state
+    // const savedDailyPlans = useSelector(state => state.planCRD.dailyPlans);
+    // console.log(savedDailyPlans[day]);
     const savedNoSchool = useSelector(state => state.planCRD.dailyPlans[day].noSchool);
     const savedLearningTarget = useSelector(state => state.planCRD.dailyPlans[day].learningTarget);
     const savedActivities = useSelector(state => state.planCRD.dailyPlans[day].activities);
@@ -224,8 +226,10 @@ function DailyPlan({day, handleSaveDailyPlan}) {
             </Form.Group>
 
             <br />
-            <Button onClick={(e) => handleSaveDailyPlan({noSchool, learningTarget, activities, activityDescrip, hook, lesson, closing, assessmentMethods, assessmentDescription, accommodations, otherAccDescription})}>Save {day}</Button>
-            {/* <Button className="ms-2 btn-warning">Update {day}</Button> */}
+            <Button onClick={() => handleSaveDailyPlan({noSchool, learningTarget, activities, activityDescrip, hook, lesson, closing, assessmentMethods, assessmentDescription, accommodations, otherAccDescription})}>
+                Save {day}
+            </Button>
+            {/* <Button >Update {day}</Button> */}
             <hr />
 
         </>
