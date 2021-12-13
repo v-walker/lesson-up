@@ -15,9 +15,9 @@ function IndividualPlan({planObj}) {
         <div>
             
             <div style={{display: "flex", justifyContent: "center", fontSize: "0.8rem"}}>
-            <div className="container m-5" style={{border: "0.5px solid black"}}>
+            <div className="container m-5 detailed-plan-card">
                 <div className="row">
-                    <div className="text-center pt-2 pb-2" width="100%" style={{backgroundColor: "yellow"}}>
+                    <div className="text-center pt-2 pb-2 z-1" width="100%" style={{backgroundColor: "yellow"}}>
                         <b>{tConvert(planObj.data.time)} {planObj.data.gradeLevel} {planObj.data.subject[0]}</b>
                     </div>
                     <hr className="m-0" />
@@ -51,8 +51,8 @@ function IndividualPlan({planObj}) {
                 </div>
 
                 <div className="row">
-                    <div className="col-12 m-0 p-0">
-                        <div style={{display: "flex", width: "100%"}}>
+                    <div className="col-12 m-0 p-0 row">
+                        <div className="row w-100 plan-holder gx-0">
                             
                             {daysArray.map(day => {
                                 return <IndividualPlanDay key={day} day={day} data={dailyPlans[day]} />

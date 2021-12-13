@@ -21,8 +21,8 @@ function PrintSidePlanel() {
     printList.sort(sortByTime);
     
     return (
-        <div className="ms-2 ms-lg-5 mb-5 side-panel ps-md-3">
-            <h3>Print List</h3>
+        <div className="ms-lg-5 mb-5 side-panel ps-md-3">
+            <h3 className="ms-2">Print List</h3>
 
             <ul className="mt-5 mb-5">
                 {printList.map(planObj => {
@@ -33,7 +33,7 @@ function PrintSidePlanel() {
             </ul>
 
             {printList.length > 0
-            ? <div className="text-end">
+            ? <div className="text-center text-md-end">
                     <Button className="btn btn-warning"><Link to="/print_plans">View Print Layout<br /><span><RiLayout5Line/></span></Link></Button>
                 </div>
             : <div className="intro">

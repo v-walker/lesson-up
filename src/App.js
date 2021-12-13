@@ -36,7 +36,7 @@ function App() {
   
   return (
     <>
-      <div className="row d-flex justify-content-center mx-0 mt-5">
+      <div className="row d-flex justify-content-center mx-4 mx-md-0 mt-5 mb-5">
         <div className="col-12 col-md-10 col-xl-8 intro">
           <h2>Welcome to Lesson Up</h2>
           <hr />

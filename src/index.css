@@ -108,10 +108,45 @@ select, .form-select {
     color: #D97941
 }
 
+.detailed-plan-card {
+    border-radius: 5px;
+    z-index: 10;
+    border: 0.5px solid rgba(224, 223, 223, 0.8);
+    box-shadow: 1px 1px 5px 2px rgba(224, 223, 223, 0.5)
+
+}
+
+.z-1 {
+    z-index: 0;
+}
+
+.plan-day {
+    width: 20%;
+    border-right: 0.5px solid rgb(207, 206, 206)
+}
+
+.plan-holder {
+    display: flex;
+    justify-content: center;
+}
+
+.plan-day:last-child {
+    border-right: none;
+}
+
+
+/* @media screen and (max-width: 476) {
+    
+} */
 
 @media screen and (max-width: 767px) {
     .side-panel {
         border-left: none;
+    }
+
+    .plan-day {
+        width: 100%;
+        border-right: none;
     }
 }
 
