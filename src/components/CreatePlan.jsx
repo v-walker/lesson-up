@@ -162,7 +162,7 @@ function CreatePlan() {
                         
                         <br />
                         <br />
-                        You can keep editing this plan up until you click "Submit Full Weekly Plan". If you do not see the button to sumbit the full plan (at the very bottom of the full form), make sure that you have clicked "Save [Day]" for each day of the week.
+                        You can keep editing this plan up until you click "Submit Full Weekly Plan". If you do not see the button to submit the full plan (at the very bottom of the full form), make sure that you have clicked "Save [Day]" for each day of the week.
                         <br />
                         <br />
                         If you are here by mistake or would like to view plans you have made previously and/or select plans to print, navigate to <Link to="/view_plans">View Plans</Link>.
