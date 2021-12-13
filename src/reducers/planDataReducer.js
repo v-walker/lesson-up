@@ -67,14 +67,15 @@ const planDataReducer = (state=initialState, action) => {
         case DELETE_PLAN:
             return {
                 ...state,
-                fullPlans: state.fullPlans.filter(plan => plan.id !== action.id)
+                fullPlans: state.fullPlans.filter(plan => plan.id !== action.id),
+                printList: state.printList.filter(plan => plan.id !== action.id)
             }
         case ADD_TO_PRINT_LIST:
             
             let planToAdd = state.fullPlans.find(plan => plan.id === action.id);
             console.log("plantoAdd", planToAdd);
 
-            if (!state.printList.includes(planToAdd)) {
+            if (!state.printList.find(plan => plan.id === action.id)) {
                 return {
                     ...state,
                     printList: [...state.printList, planToAdd]
