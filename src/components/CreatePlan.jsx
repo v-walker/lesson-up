@@ -145,7 +145,7 @@ function CreatePlan() {
         // add all of the week's daily plans to global state (set up action and case in reducer for this)
         dispatch(saveWeeklyPlans(weekOf, gradeLevel, subject, selectedStandard1, selectedStandard2, selectedStandard3, contentVocab, time, dailyPlans));
         
-        alert(`Weekly plan ${weekOfFormatted} for ${gradeLevel} ${subject[0]} successfully saved!`);
+        alert(`Weekly plan for ${gradeLevel} ${subject[0]} successfully saved!`);
 
         // clear daily Plans array
         setDailyPlans({});
