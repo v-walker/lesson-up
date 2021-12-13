@@ -27,7 +27,7 @@ function PlanCard({planObj, handleDelete}) {
         <Card key={planObj.id} className="mb-3 pb-3 pb-md-0" style={{maxWidth: "800px"}}>
             <div className="row">
                 <div className="col-12 col-md-6 col-lg-8 d-flex align-items-center">
-                    <div className="mt-3 ms-3 me-3">
+                    <div className="mt-3 ms-3 me-3 custom-collapse">
                         
                         {tConvert (planObj.data.time)} {planObj.data.gradeLevel} {planObj.data.subject[0]} plan for week of&nbsp;<Moment format="MM/DD/YYYY">{planObj.data.weekOf}</Moment>
                         <br />

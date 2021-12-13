@@ -59,10 +59,10 @@ const planDataReducer = (state=initialState, action) => {
         case SAVE_WEEKLY_PLANS:
             return {
                 ...state,
-                fullPlans: [...state.fullPlans, {
+                fullPlans: [{
                     id: uuidv4(),
                     data: action.data
-                }]
+                }, ...state.fullPlans]
             }
         case DELETE_PLAN:
             return {

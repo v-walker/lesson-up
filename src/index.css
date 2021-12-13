@@ -44,26 +44,26 @@ button a {
 .btn-warning, .btn-warning a {
     background-color: #FEFEFE;
     outline: #D97941;
-    color: #D95D30;
+    color: #8C3926;
     font-family: 'Bitter', serif;
 }
 
-.btn-warning:hover, .btn-warning a:hover, .btn-warning a:focus {
+.btn-warning:hover, .btn-warning:focus, .btn-warning a:hover, .btn-warning a:focus {
     background-color: #FFFFFF;
-    color: #da5323;
+    color: #D95D30;
     box-shadow: none;
 }
 
 .btn-primary, .btn-primary a {
     background-color: #FEFEFE;
-    color: #af462f;
+    color: #8C3926;
     border-color: #F2AA52;
     font-family: 'Bitter', serif;
 }
 
-.btn-primary:hover, .btn-primary a:hover a:focus, .btn-primary:active:focus {
+.btn-primary:hover, .btn-primary:focus, .btn-primary a:hover, .btn-primary a:focus, .btn-primary:active:focus {
     background-color: #FFFFFF;
-    color: #8d2e18;
+    color: #D95D30;
     border-color: #F2AA52;
     box-shadow: none;
 } 
@@ -83,6 +83,31 @@ button span {
 .card {
     box-shadow: 1px 1px 5px 2px rgba(224, 223, 223, 0.5)
 }
+
+.form-control:focus, .form-select:focus {
+    box-shadow: 0px 0px 5px 2px rgba(224, 223, 223, 0.5);
+    outline: none;
+    border: none;
+}
+
+select, .form-select {
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.custom-collapse button {
+    padding: 0px;
+    text-align: start;
+    text-decoration: none;
+    color: #8C3926
+    
+}
+
+.custom-collapse button:active, .custom-collapse button:focus, .custom-collapse button:hover {
+    box-shadow: none;
+    color: #D97941
+}
+
 
 @media screen and (max-width: 767px) {
     .side-panel {

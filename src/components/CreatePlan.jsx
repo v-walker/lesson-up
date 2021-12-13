@@ -199,7 +199,7 @@ function CreatePlan() {
                     </>
                 } {/* end of grade level and standards section */}
 
-                {subject &&
+                {subject.length > 0 &&
                     <>
                         <br />
                         <Form.Group className="g-0">

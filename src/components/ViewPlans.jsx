@@ -74,7 +74,7 @@ function ViewPlans() {
                             <br />
                             
                             <div className="row d-flex justify-content-center">
-                                {savedPlans.map(planObj => {
+                                {savedPlans.slice(0, 5).map(planObj => {
                                     
                                     return (
                                         <PlanCard key={planObj.id} planObj={planObj} handleDelete={handleDelete}/>
