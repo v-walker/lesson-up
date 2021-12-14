@@ -1,9 +1,10 @@
 # Lesson Up
 
 ## Functionality (MVP):
-- makes lesson planning easy and painless with a simple form consisting of checkboxes, radio buttons, dropdowns, and minimal input fields.
-- takes user input and converts to a lesson plan layout which the user can print to pdf.
-- print functionality/layout will be optimized using CSS media queries.
+- Makes lesson planning for k-12 public school educators easy and painless.
+- Users can create, save, search, and print lesson plans for each grade level and content area they teach.
+- Takes user input and converts to a lesson plan layout which the user can print to pdf.
+- Print functionality/layout optimized using CSS media queries.
 
 ## API for curriculm standards data:
 - common core curriculum API: https://commonstandardsproject.com/developers
